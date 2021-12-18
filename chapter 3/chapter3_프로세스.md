@@ -96,6 +96,14 @@ figure 3.8
 ```
 1. 자식이 자신에게 할당된 자원을 초과하여 사용할 때
 2. 자식에게 할당된 태스크가 더 이상 필요 없을 때
-3. 부모가 exit하는, 운영체제가 부모가 exit한 후에 자식이 실행을 계속 하는 것을 허용하지 않는 경우
+3. 부모가 exit 하는데, 운영체제가 부모가 exit한 후에 자식이 실행을 계속 하는 것을 허용하지 않는 경우
 ```
+
+* * *
+
+# 3.4 프로세스 간 통신
+
+`cooperating processes`는 데이터를 서로 교환할 수있는 `IPC(interprocess communication)` 기법이 필요하다.
+
+`interprocess communication`에는 기본적으로 `shared memory`와 `message passing`의 두 가지 모델이 있다.
 
