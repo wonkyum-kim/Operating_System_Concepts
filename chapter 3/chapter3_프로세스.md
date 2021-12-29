@@ -65,14 +65,11 @@ CPU 코어를 다른 프로세스로 교환하려면 이전의 프로세스의 �
 운영체제는 `프로세스 식별자(pid)`를 사용하여 프로세스를 구분하는데 보통 정수 값이다.
 
 ```
-Two possibilities for excution.
+Two possibilities for execution.
 1. 부모와 자식이 같이 실행
 2. 부모는 일부 또는 모든 자식이 실행을 종료할 때까지 기다림
-```
 
-새로운 프로세스는 주소공간에서 두 가지 가능성이 있다.
-
-```
+Two possibilites of address space
 1. 자식은 부모의 복사본
 2. 자식은 새로운 프로그램
 ```
@@ -82,16 +79,6 @@ Two possibilities for excution.
 자식 프로세스의 `fork()`의 return value는 0이지만, 자식의 0이 아닌 프로세스 식별자는 부모로 반환된다.
 
 `fork()` 시스템 콜 다음에 두 프로세스 중 한 프로세스가 `exec()` 시스템 콜을 사용하여 자신의 메모리 공간을 새로운 프로그램으로 교체한다.
-
-/* 
-
-figure 3.8
- * 자식 프로세스에 보이는 pid값은 0 
- * 부모 프로세스에 보이는 pid값은 0보다 큰 정수 값(원래는 자식 프로세스의 pid)
- * 자식 프로세스는 open files 같은 자원 뿐만 아니라 특권과 스케줄링 속성을 부모로 부터 상속받는다.
- * 그 후에 자식 프로세스는 `execlp()` 시스템 콜을 사용하여 자신의 주소 공간을 UNIX command /bin/ls 로 덮어쓴다.
-
-*/
 
 부모는 `wait()` 시스템 콜로 자식 프로세스가 끝나기를 기다린다.
 
@@ -110,6 +97,10 @@ figure 3.8
 2. 자식에게 할당된 태스크가 더 이상 필요 없을 때
 3. 부모가 exit 하는데, 운영체제가 부모가 exit한 후에 자식이 실행을 계속 하는 것을 허용하지 않는 경우
 ```
+
+`zombie process` : a process that has terminated, but whose parent has not yet called wait()
+
+`orphan process` : a process that has a parent process who did not invoke wait() and instead terminated.
 
 * * *
 
