@@ -34,6 +34,10 @@ a process is a program that performs `a single thread` of excution.
 
 # 3.2 프로세스 스케줄링
 
+`multiprogramming`의 목적은 CPU를 최대한 이용하기 위해 항상 어떤 프로세스가 실행되도록 하기 위함이다.
+
+`time sharing`의 목적은 각 프로그램이 실행되는 동안 user가 각각의 프로그램과 상호작용 할 수 있도록 프로세스들 사이에서 CPU코어를 자주 교체하기 위함이다.
+
 `프로세서 스케줄러`는 코어에서 실행 가능한 여러 프로세스 중에서 하나의 프로세스를 선택한다.
 
 각 CPU 코어는 한 번에 하나의 프로세스를 실행할 수 있다.
