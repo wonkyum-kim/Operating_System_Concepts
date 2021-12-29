@@ -25,7 +25,9 @@
 
 각 프로세스는 운영체제에서 `프로세스 제어 블록(process control block, PCB)`에 의해 표현된다.
 
-a process is a program that performs a single `thread` of excution.
+a process is a program that performs `a single thread` of excution.
+
+현대의 운영체제는 프로세스 개념을 확장하여 한 프로세스가 다수의 실행 `스레드`를  가질 수 있도록 허용한다.
 
 
 * * *
