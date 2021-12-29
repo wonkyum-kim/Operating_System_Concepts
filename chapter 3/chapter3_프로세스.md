@@ -25,6 +25,9 @@
 
 각 프로세스는 운영체제에서 `프로세스 제어 블록(process control block, PCB)`에 의해 표현된다.
 
+a process is a program that performs a single `thread` of excution.
+
+
 * * *
 
 # 3.2 프로세스 스케줄링
