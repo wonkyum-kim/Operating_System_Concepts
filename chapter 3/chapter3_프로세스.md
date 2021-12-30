@@ -114,7 +114,7 @@ Two possibilites of address space
 
 # 3.5 공유 메모리 시스템에서의 프로세스 간 통신
 
-* `shared memory`
+* **shared memory**
 
 공유 메모리 영역은 공유 메모리 세그먼트를 생성하는 프로세스의 주소 공간에 위치한다.
 
@@ -124,33 +124,60 @@ Two possibilites of address space
 
 데이터의 형식과 위치는 프로세스에 의해 결정되며 운영체제가 관리하지 않는다.
 
-* `producer-consumer problem`
+* **producer-consumer problem**
 
-생산자 프로세스(producer process)는 정보를 생산하고, 소비자 프로세스(consumer process)는 정보를 소비한다.
+`생산자 프로세스(producer process)`는 정보를 생산하고, `소비자 프로세스(consumer process)`는 정보를 소비한다.
 
 일반적으로 서버를 생산자로 클라이언트를 소비자로 생각할 수 있다.
 
 생산자 - 소비자문제의 해결책 중 하나는 공유 메모리를 사용하는 것이다.
 
-* `buffer` 
+* **buffer**
 
-생산자와 소비자 프로세스가 동시에 실행되도록 하려면, 생산자가 정보를 채워 넣고 소비자가 소모할 수 있는 항목들의 버퍼가 반드시 사용 가능해야 한다.
+생산자와 소비자 프로세스가 동시에 실행되도록 하려면, 생산자가 정보를 채워 넣고 소비자가 소모할 수 있는 항목들의 버퍼가 필요하다.
 
 이 버퍼는 생산자와 소비자가 공유하는 메모리 영역에 존재하게 된다.
 
-버퍼에는 두 가지 유형이 있다.
+> `무한 버퍼(unbounede buffer)`
+>  
+>  버퍼의 크기에 한계가 없다. 버퍼가 비어있으면 소비자는 대기해야 하지만, 생산자는 항상 새로운 항목을 생산가능하다.
 
-```
-무한 버퍼(unbounede buffer)
-버퍼의 크기에 한계가 없다. 
-버퍼가 비어있으면 소비자는 대기해야 하지만, 생산자는 항상 새로운 항목을 생산가능하다.
-
-유한 버퍼(bounded buffer)
-버퍼의 크기가 고정되어 있다고 가정한다. 
-버퍼가 비어 있으면 소비자가 대기해야 하고, 모든 버퍼가 채워져 있으면 생산자가 대기한다. 
-```
+> `유한 버퍼(bounded buffer)` 
+> 
+> 버퍼의 크기가 고정되어 있다고 가정한다. 버퍼가 비어 있으면 소비자가 대기해야 하고, 모든 버퍼가 채워져 있으면 생산자가 대기한다. 
 
 * * *
 
 # 3.6 메세지 전달 시스템에서의 프로세스간 통신
 
+* **message passing**
+
+`메세지 전달 방식`은 동일한 주소 공간을 공유하지 않고도 프로세스들이 통신을 하고, 동기화 할 수 있게 한다.
+
+Two operations of message passing facility :
+> send(message)
+> 
+> receive(message)
+
+```
+// the produce process using message passing
+
+message next_produced;
+
+while (true) {
+  /* produce an item in next_produced*/
+  send(next_produced)
+}
+```
+
+```
+
+// the consumer process using message passing
+
+message next_consumed;
+
+while (true) {
+  receive(next_consumed);
+  /* consume the item in next_consumed) */
+}
+```
