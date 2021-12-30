@@ -141,7 +141,6 @@ Two possibilites of address space
 버퍼에는 두 가지 유형이 있다.
 
 ```
-
 무한 버퍼(unbounede buffer)
 버퍼의 크기에 한계가 없다. 
 버퍼가 비어있으면 소비자는 대기해야 하지만, 생산자는 항상 새로운 항목을 생산가능하다.
