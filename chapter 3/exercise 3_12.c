@@ -2,8 +2,6 @@
 #include <unistd.h>
 #include <wait.h>
 
-int value = 5;
-
 int main()
 {
    pid_t pid = fork();
