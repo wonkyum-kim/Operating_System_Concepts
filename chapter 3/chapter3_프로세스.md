@@ -166,7 +166,7 @@ while (true) {
   send(next_produced)
 }
 ```
-`receice(message)`
+`receive(message)`
 
 ```
 // the consumer process using message passing
@@ -178,3 +178,49 @@ while (true) {
   /* consume the item in next_consumed) */
 }
 ```
+
+* **communication link**
+
+프로세스 P와 Q가 통신을 원하면, 서로 메세지를 주고 받을 수 있는 `통신 연결`이 필요하다.
+
+```
+* 직접 또는 간접 통신
+* 동기식 또는 비동기식 통신
+* 자동 또는 명시적 버퍼링
+```
+
+* **direct communication**
+
+통신을 원하는 각 프로세스는 통신의 수신자 또는 송신자의 이름을 명시해야 한다.
+
+`send(P, message)` : 프로세스 P에 메세지를 전송한다.
+
+`receive(Q, message)` : 프로세스 Q로부터 메세지를 수신한다.
+
+`직접 통신`은 다음의 특성을 가진다.
+
+1. 통신을 원하는 프로세스들은 연결이 자동으로 구축된다. (상대방의 신원만 알면 가능)
+2. 연결은 정확히 두 프로세스 사이에만 연관된다.
+3. 두 프로세스 사이에 정확히 하나의 연결만 존재해야 한다.
+
+* **indirect communication**
+
+메세지들은 `mailbox` 또는 `port`로 송신되고 수신된다.
+
+`mailbox(port)`는 프로세스에 의해 메세지가 넣어지고, 제거될 수 있는 객체라고도 볼 수 있다.
+
+`send(A, message)` : 메세지를 메일박스 A로 전송한다.
+
+`receive(A, message)` : 메세지를 메일박스 A로부터 수신한다.
+
+`간접 통신`은 다음의 특성을 가진다.
+
+1. 한 쌍의 프로세스들 사이의 연결은 공유 메일박스를 가질 때만 구축된다.
+2. 연결은 두 개 이상의 프로세스들과 연관될 수 있다.
+3. 통신하는 프로세스들 사이에는 다수의 연결이 존재할 수 있고, 각 연결은 하나의 메일박스에 대응된다.
+
+
+
+
+
+
