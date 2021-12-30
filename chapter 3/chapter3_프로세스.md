@@ -108,7 +108,7 @@ Two possibilites of address space
 
 `cooperating processes`는 데이터를 서로 교환할 수있는 `IPC(interprocess communication)` 기법이 필요하다.
 
-`interprocess communication`에는 기본적으로 `shared memory`와 `message passing`의 두 가지 모델이 있다.
+`IPC`에는 기본적으로 `shared memory`와 `message passing`의 두 가지 모델이 있다.
 
 * * *
 
