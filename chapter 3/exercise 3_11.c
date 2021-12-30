@@ -3,7 +3,6 @@
 #include <wait.h>
 
 // How many processes are created?
-// 1 parent process, 15 child processes
 
 int main()
 {
