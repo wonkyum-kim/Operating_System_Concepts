@@ -154,10 +154,7 @@ Two possibilites of address space
 
 `메세지 전달 방식`은 동일한 주소 공간을 공유하지 않고도 프로세스들이 통신을 하고, 동기화 할 수 있게 한다.
 
-Two operations of message passing facility :
-> send(message)
-> 
-> receive(message)
+`send(message)`
 
 ```
 // the produce process using message passing
@@ -169,9 +166,9 @@ while (true) {
   send(next_produced)
 }
 ```
+`receice(message)`
 
 ```
-
 // the consumer process using message passing
 
 message next_consumed;
