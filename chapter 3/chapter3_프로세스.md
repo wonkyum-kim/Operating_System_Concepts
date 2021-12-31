@@ -221,6 +221,19 @@ while (true) {
 
 메일박스는 한 프로세스 또는 운영체제에 의해 소유될 수 있다.
 
+* **blocking send**
 
+the sender process is blocked until the message is received by the receiving process or the by mailbox.
 
+* **nonblocking send**
+
+the sender process sends the message and resumes the operation.
+
+* **blocking receive**
+
+the receiver blocks until a message is available.
+
+* **nonblocking receive**
+
+the receiver retrieves either a valid message or a null.
 
