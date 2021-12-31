@@ -266,3 +266,8 @@ fd = shm_open(name, O_CREAT | O_RDWR, 0666);
 ftruncate(fd, 4096);
 ```
 
+`mmap()` 함수는 공유 메모리 객체에 접근할 때 사용될 memory-mapped file의 포인터를 반환한다.
+
+
+
+
