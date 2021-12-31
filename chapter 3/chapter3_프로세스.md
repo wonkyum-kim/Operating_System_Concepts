@@ -237,3 +237,32 @@ the receiver blocks until a message is available.
 
 the receiver retrieves either a valid message or a null.
 
+* * *
+
+# 3.7 IPC 시스템의 사례
+
+* **POSIX shared memory**
+
+POSIX 공유 메모리는 `memory-mapped files`를 사용하여 구현된다.
+
+memory-mapped files는 공유 메모리의 특정 영역을 파일과 연관시킨다.
+
+프로세스는 `shm_open()` 시스템 콜을 사용하여 공유 메모리 객체를 생성해야 한다.
+
+```
+// name : 공유 메모리 객체의 이름을 지정.
+// O_CREAT : 객체가 존재하지 않으면 생성
+// O_RDWR : 객체가 읽기와 쓰기가 가능한 상태로 열림
+// 0666 : 공유 메모리 객체에 파일 접근 허가권을 부여
+
+fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+```
+
+객체가 설정되면 `ftruncate()`함수를 사용하여 객체의 크기를 바이트 단위로 설정한다.
+
+```
+// 객체의 크기를 4096바이트로 설정한다.
+
+ftruncate(fd, 4096);
+```
+
