@@ -295,5 +295,25 @@ ftruncate(fd, 4096);
 
 통신 프로세스가 종료하더라도 지명 파이프는 계속 존재할 수 있다.
 
+* * *
+
+# 3.8 클라이언트 서버 환경에서 통신
+
+* **socket**
+
+`소켓`은 통신의 `endpoint`를 의미한다.
+
+두 프로세스가 네트워크상에서 통신을 하려면 양 프로세스마다 하나씩, 총 두개의 소켓이 필요하다.
+
+각 소켓은 `IP주소`와 `포트 번호`를 연결하여 구분한다.
+
+```
+// Java는 세 가지 종류의 소켓을 제공한다.
+
+1. Socket class : connection-oriented(TCP)
+2. DatagramSocket class : connectionless(UDP)
+3. MulticastSocket class : multiple recipients
+```
+
 
 
