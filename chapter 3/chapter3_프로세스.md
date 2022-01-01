@@ -268,6 +268,26 @@ ftruncate(fd, 4096);
 
 `mmap()` 함수는 공유 메모리 객체에 접근할 때 사용될 memory-mapped file의 포인터를 반환한다.
 
+* **pipes**
+
+`파이프`는 두 프로세스가 통신할 수 있게 하는 전달자이다.
+
+```
+// Four issues of pipe implementaion
+
+1. unidirectional or bidirectional?
+2. in the case of bidirectional, half duplex or full duplex?
+3. relationship such as parent-child
+4. can the pipes communicate over a network?
+```
+
+* **ordinary pipes**
+
+`일반 파이프`는 파이프를 생성한 프로세스 이외에는 접근할 수 없다.
+
+단방향 통신만 지원하며 만일 양방향 통신이 필요하다면 두 개의 파이프를 사용해야 한다.
+
+부모 프로세스가 파이프를 생성하고 `fork()`로 생성한 자식 프로세스와 통신하기 위해 사용한다.
 
 
 
