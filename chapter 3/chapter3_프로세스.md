@@ -17,7 +17,6 @@
 
 * **process state**
 
-
 프로세스는 실행되면서 `state`가 변한다.
 
 ```
@@ -27,6 +26,8 @@
 * ready
 * terminated
 ```
+
+* **process control block(PCB)**
 
 각 프로세스는 운영체제에서 `프로세스 제어 블록(process control block, PCB)`에 의해 표현된다.
 
