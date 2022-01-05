@@ -23,3 +23,54 @@ thread ID, program counter, register set, stack으로 구성되어 있다.
 
 # 4.2 다중 코어 프로그래밍(multicore programming)
 
+* **programming challenges**
+
+```
+* identifying tasks : find areas can be divided into seperate tasks
+* balance : ensure the tasks to perform equal to work of equal value
+* data spliting : data must be divided to run on seperate cores
+* data dependency : ensure that the excution of tasks is synchronized to accomodate the data dependency
+* testing and debugging
+```
+
+* **types of parallelism**
+
+`데이터 병렬 실행`과 `태스크 병렬 실행`이 존재한다.
+
+* * *
+
+# 4.3 다중 스레드 모델(multithreading models)
+
+`user threads`와 `kernel threads`가 존재한다.
+
+* * *
+
+# 4.4 스레드 라이브러리(threads library)
+
+```
+POSIX pthreads
+Windows threads
+Java threads
+```
+
+* * *
+
+# 4.5 암묵적 스레딩(implicit threading)
+
+다중 코어 시스템에서 다중 스레드를 설계하는 것이 매우 어렵기 때문에 `컴파일러`와 `런타임 라이브러리`에게 넘겨준다.
+
+이를 `암묵적 스레딩`이라고 한다.
+
+* **thread pools**
+
+프로세스를 시작할 때 일정한 수의 스레드를 미리 풀로 만들어두는 것이다.
+
+* **fork & join**
+
+메인 부모 스레드가 자식을 생성(fork)한 다음 자식의 종료를 기다린 후 join하고 그 시점부터 자식의 결과를 확인
+
+암묵적 스레딩에서도 활용된다.
+
+* **OpenMP**
+
+C/C++ 또는 fortran으로 작성된 API와 컴파일러 디렉티브의 
