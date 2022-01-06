@@ -1,4 +1,4 @@
-# 기본 개념
+# 5.1 기본 개념
 
 * **CPU-I/O burst cycle**
 
@@ -43,11 +43,33 @@ CPU 스케줄링 결정은 네 가지 상황에서 발생할 수 있다.
 
 * * *
 
-# 스케줄링 기준(scheduling criteria)
+# 5.2 스케줄링 기준(scheduling criteria)
 
 * CPU utilixtion : to keep the CPU as busy as possible.
 * throughput : the number of process completed per time unit.
 * turnaround time : from the time of submission to the time of completion.
 * waiting time : the sum of periods spend waiting in the ready queue.
 * response time : the time it takes to start responding.
+
+* * *
+
+# 5.3 스케줄링 알고리즘
+
+CPU 스케줄링은 준비 큐에 있는 어느 프로세스에 CPU 코어를 할당할 것인지를 결정하는 문제를 다룬다.
+
+* **FCFS(first-come, first-served scheduling)**
+
+일반적인 queue 구조로 실행한다. (nonpreemptive)
+
+* **SJF(shortest job first)**
+
+CPU가 이용가능해지면, 가장 작은 CPU 버스트길이를 가진 프로세스를 실행한다.
+
+하지만 다음 CPU 버스트의 길이를 알 수 없기 때문에 구현할 수 없다.
+
+따라서 SJF 스케줄링과 근사한 방법을 사용한다.
+
+
+
+
 
