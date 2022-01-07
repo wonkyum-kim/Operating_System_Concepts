@@ -67,9 +67,32 @@ CPU가 이용가능해지면, 가장 작은 CPU 버스트길이를 가진 프로
 
 하지만 다음 CPU 버스트의 길이를 알 수 없기 때문에 구현할 수 없다.
 
-따라서 SJF 스케줄링과 근사한 방법을 사용한다.
+따라서 SJF 스케줄링을 근사한 방법을 사용한다.
 
+* **SRTF(shortest remaining time first)**
 
+SJF 알고리즘은 preemptive이거나 nonpreemptive일 수 있다.
 
+non preemptive SJF를 `SRTF`라고 한다.
+
+SRTF알고리즘은 실행되고 있는 프로세스의 남은 CPU버스트와 새로운 프로세스의 CPU버스트를 비교한다.
+
+* **round robin scheduling**
+
+`RR`은 시간 할당량(time quantum)을 가진 preemptive FCFS다.
+
+ready queue는 `circular queue`로 동작한다.
+
+만약 실행중인 프로세스의 CPU버스트가 한 번의 시간할당량보다 작으면 자발적으로 방출된다.
+
+* **priority scheduling**
+
+`SJF알고리즘`은 `우선순위 스케줄링 알고리즘`의 특별한 케이스다.
+
+우선순위 스케줄링 알고리즘은 preemptive이거나 nonpreemptive일 수 있다.
+
+`indefinite blocking(starvation)`은 낮은 우선순위의 프로세스들이 CPU를 무한히 대기하는 경우이다.
+
+이 문제에 대한 해결방법은 `aging`이 있다.
 
 
