@@ -52,7 +52,7 @@ bool flag[2];
 
 while (true) {
   flag[i] = true;
-  turn j;
+  turn = j;
   
   while (flag[j] && turn == j) {  // j가 임계영역에서 실행되고 있는지 체크한다.
   }
