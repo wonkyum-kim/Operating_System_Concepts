@@ -64,3 +64,72 @@ while (true) {
   /* remainder section */
 }
 ```
+
+* * *
+
+# 6.4 동기화를 위한 하드웨어 지원(Hardware Support for Synchronization)
+
+* **memory barriers**
+
+* **hardware instructions**
+
+`test_and_set()`과 `compare_and_swap()`를 지원한다.
+
+* **atomic variables**
+
+일반적으로 `compare_and_set()` 명령어는 `원자적 변수`를 구축하는데 사용된다.
+
+* * *
+
+# 6.5 Mutex locks
+
+임계구역 문제에 대한 하드웨어 기반 해결책은 복잡하므로 사용하기 힘들다.
+
+대신에 `mutex lock`이라는 것을 사용한다.
+
+`mutex`라는 용어는 `mutual exclusion`의 축약한 것이다.
+
+프로세스는 임계구역에 들어가기 전에 반드시 락을 획득해야 하고, 빠져나올 때 반환해야 한다.
+
+* **available**
+
+mutex lock은 `available`이라는 변수를 가지는데, 락이 사용 가능한지 나타낸다.
+
+사용가능하다면 `aquire()` 함수가 락을 획득하고 `release()` 함수가 락을 반환한다.
+
+```
+aquire() {
+  while (!available) {
+    /* busy state */
+  }
+  available = false;
+}
+
+release() {
+  available = true;
+}
+
+// mutex lock을 사용한 방법
+
+while (true) {
+  /* aquire lock */
+  
+  critical section
+  
+  /* release lock */
+  
+  remainder section
+}
+```
+
+* **busy waiting**
+
+프로세스가 임계구역에 있는 동안 임계구역에 들어가기 원하는 다른 프로세스들은 `aquire()`함수를 무한히 호출하게 된다.
+
+이것은 하나의 CPU코어가 여러 프로세스에서 공유되는 multiprogramming 시스템에서 문제가 된다.
+
+* **spin lock**
+
+위에서 설명한 락을 `spin lock`이라고 한다.
+
+스핀 락은 프로세스가 락을 기다려야 하므로 문맥교환이 일어나지 않는다.
