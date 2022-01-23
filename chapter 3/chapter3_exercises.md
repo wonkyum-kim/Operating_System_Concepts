@@ -13,3 +13,10 @@ c. shared memory segments
 # 3.11
 
 16 processes are creeated including the initial parent process.
+
+# 3.12
+
+Because of `execlp()`, LINE J will not be reached.
+
+# 3.13
+
