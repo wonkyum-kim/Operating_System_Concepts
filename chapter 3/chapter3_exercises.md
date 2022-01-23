@@ -11,3 +11,8 @@ The result is 5.
 # 3.4
 
 # 3.5
+
+c. shared memory segments
+
+# 3.6
+
