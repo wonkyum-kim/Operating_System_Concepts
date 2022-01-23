@@ -161,6 +161,52 @@ Two possibilites of address space
 > 
 > 버퍼의 크기가 고정되어 있다고 가정한다. 버퍼가 비어 있으면 소비자가 대기해야 하고, 모든 버퍼가 채워져 있으면 생산자가 대기한다. 
 
+```
+
+/* 
+ * in : 다음으로 비어있는 위치
+ * out : 첫 번째로 채워져 있는 위치
+ * in == out 이면 버퍼가 비어있고
+ * ((in + 1) % BUFFER_SIZE) == out 이며 버퍼가 가득 차 있다.
+ */
+# define BUFFER_SIZE 10
+
+typedef struct {
+  ...
+} item;
+
+item buffer[BUFFER_SIZE];
+int in = 0;
+int out = 0;
+```
+
+```
+item next_produced;
+while (true) {
+  /* produce an item in next_produced */
+  
+  while (((in + 1) % BUFFER_SIZE) == out ) {
+    // do nothing
+  }
+  
+  buffer[in] = next_produced;
+  in = (in + 1) % BUFFER_SIZE);
+}
+
+item next_consumed;
+while (true) {
+  
+  while (in == out) {
+    // do nothing
+  }
+  
+  next_consumed = buffer[out];
+  out = (out + 1) % BUFFER_SIZE;
+  
+  /* consume the item in next_consumed */
+}
+```
+
 * * *
 
 # 3.6 메세지 전달 시스템에서의 프로세스간 통신
