@@ -6,13 +6,8 @@ The result is 5.
 
 8 processes are created.
 
-# 3.3
-
-# 3.4
-
 # 3.5
 
 c. shared memory segments
 
-# 3.6
 
