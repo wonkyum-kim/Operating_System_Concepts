@@ -162,13 +162,13 @@ Two possibilites of address space
 > 버퍼의 크기가 고정되어 있다고 가정한다. 버퍼가 비어 있으면 소비자가 대기해야 하고, 모든 버퍼가 채워져 있으면 생산자가 대기한다. 
 
 ```
-
 /* 
  * in : 다음으로 비어있는 위치
  * out : 첫 번째로 채워져 있는 위치
  * in == out 이면 버퍼가 비어있고
  * ((in + 1) % BUFFER_SIZE) == out 이며 버퍼가 가득 차 있다.
  */
+ 
 # define BUFFER_SIZE 10
 
 typedef struct {
