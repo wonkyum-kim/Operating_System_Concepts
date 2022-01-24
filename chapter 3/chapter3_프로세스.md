@@ -255,21 +255,39 @@ while (true) {
 
 메일박스는 한 프로세스 또는 운영체제에 의해 소유될 수 있다.
 
-* **blocking send**
+* **synchronization**
+
+`blocking send`
 
 송신하는 프로세스는 메시지가 프로세스 또는 메일박스에 수신될 때까지 봉쇄됨.
 
-* **nonblocking send**
+`nonblocking send`
 
 송신하는 프로세스가 메세지를 보내고 작업을 재개.
 
-* **blocking receive**
+`blocking receive`
 
 메세지가 이용 가능할 때까지 수신하는 프로세스가 봉쇄됨.
 
-* **nonblocking receive**
+`nonblocking receive`
 
 수신하는 프로세스가 유효한 메세지 또는 NULL을 받는다.
+
+* **buffering**
+
+`zero capacity`
+
+큐의 길이가 0이기 때문에 송신 프로세스는 수신 프로세스가 메세지를 수신할 때까지 기다려야 한다.
+
+`bounded capacity`
+
+큐의 길이가 유한하다. 즉, n개의 메세지를 넣을 수 있다.
+
+n개가 넘어간다면, 송신자는 큐가 이용 가능할 때까지 봉쇄된다.
+
+`unbounded capacity`
+
+큐의 길이가 무한하다. 송신자는 봉쇄되지 않는다.
 
 * * *
 
