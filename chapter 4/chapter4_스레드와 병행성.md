@@ -43,9 +43,41 @@ thread ID, program counter, register set, stack으로 구성되어 있다.
 
 `user threads`와 `kernel threads`가 존재한다.
 
+* **many-to-one model**
+
+user threads를 하나의 kernel thread로 연결한다.
+
+현재는 쓰이고 있지 않다.
+
+* **one-to-one model**
+
+각 user thread가 각 kernel thread로 연결한다.
+
+단점은 user thread를 만들려면 kernel thread를 만들어야 한다는 것이다.
+
+* **many-to-many model**
+
+여러개의 user threads가 같거나 작은 수의 kernel threads와 연결된다.
+
+또한 하나의 user thread가 하나의 kernel thread에만 연결되도록 하는 것도 허용한다. 이를 `two-level model`이라고 한다.
+
 * * *
 
 # 4.4 스레드 라이브러리(threads library)
+
+* **asynchronous threading**
+
+부모가 자식 스레드를 생성한 이후 서로 병행적으로 실행된다.
+
+스레드 사이의 데이터 공유는 거의 없다.
+
+* **synchronous threading**
+
+부모 스레드가 하나 이상의 자식 스레드를 생성하고 모두 종료할 때까지 기다렸다가 실행한다.
+
+자식 스레드들은 병행하게 실행하지만, 부모는 모든 자식이 끝나야 실행한다.
+
+동기 스레딩은 상당한 양의 데이터 공유를 수반한다.
 
 ```
 POSIX pthreads
