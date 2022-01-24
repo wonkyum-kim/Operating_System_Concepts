@@ -254,11 +254,9 @@ while (true) {
 
 통신을 원하는 각 프로세스는 통신의 수신자 또는 송신자의 이름을 명시해야 한다.
 
-`send(P, message)` : 프로세스 P에 메세지를 전송한다.
+직접 통신은 송신자와 수신자 프로세스 모두 이름을 알아야 하는 `대칭 통신`과 송신자만 수신자 이름을 알면 되는 `비대칭 통신`으로 구분된다.
 
-`receive(Q, message)` : 프로세스 Q로부터 메세지를 수신한다.
-
-`직접 통신`은 다음의 특성을 가진다.
+직접 통신은 다음의 특성을 가진다.
 
 1. 통신을 원하는 프로세스들은 연결이 자동으로 구축된다. (상대방의 신원만 알면 가능)
 2. 연결은 정확히 두 프로세스 사이에만 연관된다.
@@ -284,19 +282,19 @@ while (true) {
 
 * **blocking send**
 
-the sender process is blocked until the message is received by the receiving process or the by mailbox.
+송신하는 프로세스는 메시지가 프로세스 또는 메일박스에 수신될 때까지 봉쇄됨.
 
 * **nonblocking send**
 
-the sender process sends the message and resumes the operation.
+송신하는 프로세스가 메세지를 보내고 작업을 재개.
 
 * **blocking receive**
 
-the receiver blocks until a message is available.
+메세지가 이용 가능할 때까지 수신하는 프로세스가 봉쇄됨.
 
 * **nonblocking receive**
 
-the receiver retrieves either a valid message or a null.
+송신하는 프로세스가 유효한 메세지 또는 NULL을 받는다.
 
 * * *
 
