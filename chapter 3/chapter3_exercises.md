@@ -20,3 +20,9 @@ Because of `execlp()`, LINE J will not be reached.
 
 # 3.13
 
+```
+A : 0
+B : 2603
+C : 2603
+D : 2600
+```
