@@ -215,31 +215,6 @@ while (true) {
 
 `메세지 전달 방식`은 동일한 주소 공간을 공유하지 않고도 프로세스들이 통신을 하고, 동기화 할 수 있게 한다.
 
-`send(message)`
-
-```
-// the produce process using message passing
-
-message next_produced;
-
-while (true) {
-  /* produce an item in next_produced*/
-  send(next_produced)
-}
-```
-`receive(message)`
-
-```
-// the consumer process using message passing
-
-message next_consumed;
-
-while (true) {
-  receive(next_consumed);
-  /* consume the item in next_consumed) */
-}
-```
-
 * **communication link**
 
 프로세스 P와 Q가 통신을 원하면, 서로 메세지를 주고 받을 수 있는 `통신 연결`이 필요하다.
@@ -294,7 +269,7 @@ while (true) {
 
 * **nonblocking receive**
 
-송신하는 프로세스가 유효한 메세지 또는 NULL을 받는다.
+수신하는 프로세스가 유효한 메세지 또는 NULL을 받는다.
 
 * * *
 
