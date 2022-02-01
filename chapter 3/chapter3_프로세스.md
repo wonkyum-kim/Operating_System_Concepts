@@ -25,11 +25,11 @@
 프로세스는 실행되면서 `state`가 변한다.
 
 ```
-* new
-* running
-* waiting
-* ready
-* terminated
+* 생성(new)
+* 실행(running) : 프로세스가 명령어를 실행하는 중이다.
+* 대기(waiting) : 입출력등을 기다리는 동안 프로세스의 수행을 중단
+* 준비(ready) : 운영체제가 다른 프로세스를 실행하는 등의 이유로 대기
+* 종료(terminated)
 ```
 
 * **process control block(PCB)**
