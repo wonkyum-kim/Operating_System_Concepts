@@ -83,13 +83,42 @@ while (true) {
 
 # 6.5 Mutex locks
 
-임계구역 문제에 대한 하드웨어 기반 해결책은 복잡하므로 사용하기 힘들다.
-
-대신에 `mutex lock`이라는 것을 사용한다.
+임계구역 문제에 대한 하드웨어 기반 해결책은 복잡하므로 사용하기 힘드므로, `mutex lock`이라는 것을 사용한다.
 
 `mutex`라는 용어는 `mutual exclusion`의 축약한 것이다.
 
 프로세스는 임계구역에 들어가기 전에 반드시 락을 획득해야 하고, 빠져나올 때 반환해야 한다.
+
+* **pthread_mutex_lock()**
+
+```
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+int pthread_mutex_unlock(pthread_mutex_t *mutex);
+```
+
+아래와 같이 쓸 수 있다.
+
+```
+pthread_mutex_t lock;
+pthread_mutex_lock(&lock);
+x = x + 1;    // 임계영역 코드
+pthread_mutex_unlock(&lock);
+```
+
+`pthread_mutex_lock()`이 호출되었을 때, 다른 어떤 스레드도 락을 가지고 있지 않다면 이 쓰레드가 락을 얻어서 임계 영역에 진입한다.
+
+만약 다른 스레드가 락을 가지고 있다면, 락 획득을 시도하는 스레드는 락을 얻을 때까지 리턴하지 않는다.
+
+* **pthread_mutex_init()**
+
+```
+int rc = pthread_mutex_init(&lock, NULL);
+assert(rc == 0);  // 성공했는지 확인
+```
+
+* **pthread_mutex_destory()**
+
+락 사용이 끝났다면 호출한다.
 
 * **available**
 
