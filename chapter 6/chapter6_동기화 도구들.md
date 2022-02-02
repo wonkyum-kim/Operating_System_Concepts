@@ -81,39 +81,6 @@ while (true) {
 
 * * *
 
-# 스레드 생성
-
-* **pthread_create()**
-
-```
-#include <pthread.h>
-
-int pthread_create(pthread* thread, 
-                   const pthread_attr_t* attr,
-                   void* (*start_routine)(void*)
-                   void* arg
-                   )
-```
-
-`thread` : pthread 타입 구조체를 가리키는 포인터
-
-`attr` : 스레드의 속성을 지정한다.
-
-`*start_routine` : 이 스레드가 실행할 함수를 나타낸다.
-
-`arg` : 실행할 함수에게 전달할 인자
-
-* **pthread_join()**
-
-```
-int pthread_join(pthread_t thread, void** value_ptr)
-```
-
-`thread` : 어떤 스레드를 기다릴지 명시한다.
-
-`value_ptr` : 반환 값에 대한 포인터
-* * *
-
 # 6.5 Mutex locks
 
 임계구역 문제에 대한 하드웨어 기반 해결책은 복잡하므로 사용하기 힘들다.
