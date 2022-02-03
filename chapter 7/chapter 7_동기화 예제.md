@@ -47,6 +47,20 @@ while (true) {
 
 * **the readers-writers problem**
 
+하나의 데이터베이스가 다수의 병행 프로세스간에 공유된다고 하자.
+
+어떤 프로세스는 데이터베이스의 내용을 읽기만 하고, 어떤 프로세스는 쓰기만 한다.
+
+이를 각각 `readers`와 `writers`라고 한다.
+
+> the first readers-writers problem
+
+단순히 writer가 기다린다고 해서, 어느 reader도 기다리게 해서는 안된다.
+
+> the second readers-writers problem
+
+writer가 기다리고 있다면, reader들은 기다려야 한다.
+
 * **the dining philosophers problem**
 
 * * *
