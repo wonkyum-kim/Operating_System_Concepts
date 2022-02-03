@@ -81,6 +81,8 @@ while (true) {
   }
   signal(mutex);
   . . .
+  /* reading is performed */
+  . . .
   wait(mutex);
   read_count--;
   if (read_count == 0) {
