@@ -58,6 +58,8 @@ while (true) {
 
 단순히 writer가 기다린다고 해서, 어느 reader도 기다리게 해서는 안된다.
 
+다시 말하면, 기다리는 reader가 없어야 writer가 진입할 수 있다.
+
 ```
 semaphore rw_mutex = 1;
 semaphore mutex = 1;
