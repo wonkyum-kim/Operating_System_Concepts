@@ -23,6 +23,7 @@ while (true) {
   wait(mutex);
   . . .
   /* add next_produced to the buffer */
+  . . .
   signal(mutex);
   signal(full);
 }
@@ -56,6 +57,38 @@ while (true) {
 > the first readers-writers problem
 
 단순히 writer가 기다린다고 해서, 어느 reader도 기다리게 해서는 안된다.
+
+```
+semaphore rw_mutex = 1;
+semaphore mutex = 1;
+int read_count = 0;
+
+// writer
+while (true) {
+  wait(rw_mutex);
+  . . .
+  /* writing is performed */
+  . . .
+  signal(rw_mutex)
+}
+
+// reader
+while (true) {
+  wait(mutex);
+  read_count++;
+  if (read_count == 1) {
+    wait(rw_mutex);
+  }
+  signal(mutex);
+  . . .
+  wait(mutex);
+  read_count--;
+  if (read_count == 0) {
+    signal(rw_mutex);
+  }
+  signal(mutex);
+}
+```
 
 > the second readers-writers problem
 
