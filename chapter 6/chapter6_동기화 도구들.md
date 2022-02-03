@@ -144,6 +144,8 @@ while (true) {
 
 세마포 S는 정수 변수로서, 두 개의 원자적 연산인 `wait()`와 `signal()`로만 접근할 수 있다.
 
+wait()는 S가 0보다 클 때 하나씩 줄이고, signal()은 S를 하나 늘린다. 
+
 ```
 wait(S) {
   while (S <= 0) {
@@ -173,13 +175,49 @@ S값은 0과 1로만 가능하다.
 
 자신을 일시중지 시키고 대기 큐에 넣어 대기 상태로 전환한다.
 
-일시 중지된 프로세스는 다른 프로세스가 signal() 연산을 실행하면 waikup() 연산에 의해 재시작 된다.
+일시 중지된 프로세스는 다른 프로세스가 signal() 연산을 실행하면 wakeup() 연산에 의해 재시작 된다.
 
 이때 프로세스의 상태를 대기에서 준비상태로 변경한다. 그리고 프로세스는 준비 큐에 넣어진다.
 
 * * *
 
 # 6.7 모니터(monitors)
+
+모니터는 ADT이다. 
+
+```
+monitor monitor name
+{ 
+  /* shared variable declarations */
+  
+  function p1(...) {
+    ...
+  }
+  
+  function p2(...) {
+    ...
+  }
+  
+  ...
+  
+  function pn(...) {
+    ...
+  }
+  
+  initialization_code(...) {
+    ...
+  }
+}
+```
+
+모니터 구조는 `condition 변수`를 정의할 수 있다.
+
+```
+condition x, y;
+
+x.wait();
+x.signal();   // 일시 중지된 프로세스가 없으면 아무런 일을 하지 않는다.
+```
 
 * * *
 
