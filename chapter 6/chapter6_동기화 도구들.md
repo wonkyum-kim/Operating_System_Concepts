@@ -94,37 +94,6 @@ while (true) {
 
 프로세스는 임계구역에 들어가기 전에 반드시 락을 획득해야 하고, 빠져나올 때 반환해야 한다.
 
-* **pthread_mutex_lock()**
-
-```
-int pthread_mutex_lock(pthread_mutex_t *mutex);
-int pthread_mutex_unlock(pthread_mutex_t *mutex);
-```
-
-아래와 같이 쓸 수 있다.
-
-```
-pthread_mutex_t lock;
-pthread_mutex_lock(&lock);
-x = x + 1;    // 임계영역 코드
-pthread_mutex_unlock(&lock);
-```
-
-`pthread_mutex_lock()`이 호출되었을 때, 다른 어떤 스레드도 락을 가지고 있지 않다면 이 쓰레드가 락을 얻어서 임계 영역에 진입한다.
-
-만약 다른 스레드가 락을 가지고 있다면, 락 획득을 시도하는 스레드는 락을 얻을 때까지 리턴하지 않는다.
-
-* **pthread_mutex_init()**
-
-```
-int rc = pthread_mutex_init(&lock, NULL);
-assert(rc == 0);  // 성공했는지 확인
-```
-
-* **pthread_mutex_destory()**
-
-락 사용이 끝났다면 호출한다.
-
 * **available**
 
 mutex lock은 `available`이라는 변수를 가지는데, 락이 사용 가능한지 나타낸다.
@@ -146,6 +115,7 @@ release() {
 // mutex lock을 사용한 방법
 
 while (true) {
+
   /* aquire lock */
   
   critical section
@@ -158,7 +128,7 @@ while (true) {
 
 * **busy waiting**
 
-프로세스가 임계구역에 있는 동안 임계구역에 들어가기 원하는 다른 프로세스들은 `aquire()`함수를 무한히 호출하게 된다.
+프로세스가 임계구역에 있는 동안 임계구역에 들어가기 원하는 다른 프로세스들은 아무것도 하지 않는 반복문을 계속 실행한다.
 
 이것은 하나의 CPU코어가 여러 프로세스에서 공유되는 multiprogramming 시스템에서 문제가 된다.
 
