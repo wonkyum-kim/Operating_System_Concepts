@@ -11,7 +11,7 @@ int main()
     if (pid == 0) {  // child process
         value += 15;
     }
-    else if (pid > 0) { // parnet process
+    else if (pid > 0) { // parent process
         wait(NULL);
         printf("Parent: value = %d\n", value);  // line A
     }
