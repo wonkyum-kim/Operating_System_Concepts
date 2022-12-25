@@ -54,3 +54,51 @@ int main()
     return 0;
 }
 ```
+
+# 3.19
+
+The first version
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <time.h>
+
+// complex command
+// $ gcc -o time time.c
+// $ ./time "ls | grep t | grep c"
+
+int main(int argc, char* argv[])
+{
+    pid_t pid = fork();
+
+    const int SIZE = 4096;
+    const char* name = "starting time";
+    
+    int fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    ftruncate(fd, SIZE);
+    char* ptr = (char*)mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+
+    if (pid == 0) {
+        sprintf(ptr, "%d", (int)clock());
+        system(argv[1]);
+        exit(0);
+    }
+    else {
+        wait(0);
+        int end = (int)clock();
+        int start = atoi(ptr);
+        double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
+        printf("Elapsed time: %f\n", elapsed);
+    }
+    return 0;
+}
+```
