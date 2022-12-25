@@ -99,7 +99,6 @@ int main(int argc, char* argv[])
     }
     else {
         wait(0);
-        sleep(5);
         gettimeofday(&current, NULL);
         double end = current.tv_sec + (double)current.tv_usec / 1000000;
         double start = atof(ptr);
