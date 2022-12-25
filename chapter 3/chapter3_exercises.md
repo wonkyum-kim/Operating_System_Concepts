@@ -70,11 +70,13 @@ The first version
 #include <sys/shm.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
-#include <time.h>
+#include <sys/time.h>
 
 // complex command
 // $ gcc -o time time.c
 // $ ./time "ls | grep t | grep c"
+
+struct timeval current;
 
 int main(int argc, char* argv[])
 {
@@ -88,16 +90,22 @@ int main(int argc, char* argv[])
     char* ptr = (char*)mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
     if (pid == 0) {
-        sprintf(ptr, "%d", (int)clock());
+        gettimeofday(&current, NULL);
+        double start = current.tv_sec + (double)current.tv_usec / 1000000;
+        sprintf(ptr, "%f", start);
+        ptr += sizeof(double);
         system(argv[1]);
         exit(0);
     }
     else {
         wait(0);
-        int end = (int)clock();
-        int start = atoi(ptr);
-        double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
-        printf("Elapsed time: %f\n", elapsed);
+        sleep(5);
+        gettimeofday(&current, NULL);
+        double end = current.tv_sec + (double)current.tv_usec / 1000000;
+        double start = atof(ptr);
+        double diff = end - start;
+        printf("Elapsed time: %f\n", diff);
+        shm_unlink(name);
     }
     return 0;
 }
