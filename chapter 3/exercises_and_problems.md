@@ -174,3 +174,60 @@ int main(int argc, char* argv[])
     return 0;
 }
 ```
+
+# 3.20
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
+
+#define MIN_PID 300
+#define MAX_PID 5000
+
+int* pid_pool;
+
+int allocate_map(void)
+{
+    pid_pool = (int*)malloc(sizeof(int) * (MAX_PID - MAX_PID));
+    memset(pid_pool, 0, sizeof(int) * (MAX_PID - MAX_PID));
+    return pid_pool ? 1 : -1;
+}
+
+int allocate_pid(void)
+{
+    int flag = 0;
+    for (int i = 0; i < MAX_PID - MIN_PID; ++i) {
+        if (pid_pool[i] & 1) {
+            continue;
+        }
+        pid_pool[i] = 1;
+        flag = i + MIN_PID;
+        break;
+    }
+    return flag ? flag : -1;
+}
+
+void release_pid(int pid)
+{
+    pid_pool[pid - MIN_PID] = 0;
+}
+
+int main()
+{
+    if(allocate_map() == -1) {
+        printf("Error\n");
+        return 0;
+    }
+    
+    printf("%d\n", allocate_pid());
+    printf("%d\n", allocate_pid());
+    release_pid(300);
+    printf("%d\n", allocate_pid());
+    printf("%d\n", allocate_pid());
+    free(pid_pool);
+}
+```
