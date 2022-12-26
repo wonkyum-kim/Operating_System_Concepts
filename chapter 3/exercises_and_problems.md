@@ -199,7 +199,7 @@ int allocate_map(void)
 
 int allocate_pid(void)
 {
-    int flag = 0;
+    int flag = -1;
     for (int i = 0; i < MAX_PID - MIN_PID; ++i) {
         if (pid_pool[i] & 1) {
             continue;
@@ -208,7 +208,7 @@ int allocate_pid(void)
         flag = i + MIN_PID;
         break;
     }
-    return flag ? flag : -1;
+    return flag;
 }
 
 void release_pid(int pid)
