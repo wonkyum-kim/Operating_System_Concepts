@@ -72,7 +72,7 @@ The first version
 #include <sys/mman.h>
 #include <sys/time.h>
 
-// complex command
+// Complex command
 // $ gcc -o time time.c
 // $ ./time "ls | grep t | grep c"
 
@@ -105,6 +105,71 @@ int main(int argc, char* argv[])
         double diff = end - start;
         printf("Elapsed time: %f\n", diff);
         shm_unlink(name);
+    }
+    return 0;
+}
+```
+
+The second version
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/time.h>
+
+// Complex command
+// $ gcc -o time time.c
+// $ ./time "ls | grep t | grep c"
+
+struct timeval current;
+
+int main(int argc, char* argv[])
+{
+
+    int fd[2];
+    pipe(fd);
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        gettimeofday(&current, NULL);
+        double start = current.tv_sec + (double)current.tv_usec / 1000000;
+        char message[30];
+        sprintf(message, "%f", start);
+
+        // Close the read end of the pipe
+        close(fd[0]);
+        // Write to the pipe
+        write(fd[1], message, strlen(message) + 1);
+        // Close the write end of the pipe
+        close(fd[1]);
+
+        system(argv[1]);
+        exit(0);
+    }
+    else {
+        wait(0);
+        gettimeofday(&current, NULL);
+        double end = current.tv_sec + (double)current.tv_usec / 1000000;
+        char message[30];
+
+        // Close the write end of the pipe
+        close(fd[1]);
+        // Read from the pipe
+        read(fd[0], message, 30);
+        // Close the read end of the pipe
+        close(fd[0]);
+
+        double start = atof(message);
+        double diff = end - start;
+        printf("Elapsed time: %f\n", diff);
     }
     return 0;
 }
