@@ -231,3 +231,42 @@ int main()
     free(pid_pool);
 }
 ```
+
+# 3.21
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
+
+// gcc -o Collatz ./Collatz.c
+// ./Collatz 35
+
+int main(int argc, char* argv[])
+{
+    int n = atoi(argv[1]);
+    if (n <= 0) {
+        printf("Enter a positive integer\n");
+        return 0;
+    } 
+    pid_t pid = fork();
+    if (pid == 0) {
+        while (n != 1) {
+            printf("%d, ", n);
+            if (n % 2 == 0) {
+                n >>= 1;
+            }
+            else {
+                n = 3 * n + 1;
+            }
+        } 
+        printf("%d\n", n);
+    }
+    else {
+        wait(0);
+    }
+}
+```
