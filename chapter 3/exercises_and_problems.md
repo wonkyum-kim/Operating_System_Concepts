@@ -270,3 +270,61 @@ int main(int argc, char* argv[])
     }
 }
 ```
+
+# 3.22
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/time.h>
+
+// gcc -o Collatz ./Collatz.c
+// ./Collatz 35
+
+int main(int argc, char* argv[])
+{
+    int n = atoi(argv[1]);
+    if (n <= 0) {
+        printf("Enter a positive integer\n");
+        return 0;
+    } 
+
+    const int SIZE = 4096;
+    const char* name = "Collatz conjecture";
+    int fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    ftruncate(fd, SIZE);
+    char* ptr = (char*)mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+
+
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        while (n != 1) {
+            // Find a null character
+            char* p = strchr(ptr, 0);
+            sprintf(p, "%d, ", n);
+            if (n % 2 == 0) {
+                n /= 2;
+            }
+            else {
+                n = 3 * n + 1;
+            }
+        } 
+        char* p = strchr(ptr, 0);
+        sprintf(p, "%d", n);
+    }
+    else {
+        wait(0);
+        printf("%s\n", ptr);
+        shm_unlink(name);
+    }
+}
+```
