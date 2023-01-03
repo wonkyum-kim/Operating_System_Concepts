@@ -328,3 +328,54 @@ int main(int argc, char* argv[])
     }
 }
 ```
+
+# 3.26
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/time.h>
+
+// gcc -o pipe ./pipe.c
+// ./pipe
+
+int main(int argc, char* argv[])
+{
+    int fd[2];
+    pipe(fd);
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        close(fd[0]);
+        char write_msg[30] = "Hi There";
+        write(fd[1], write_msg, strlen(write_msg) + 1);
+        close(fd[1]);
+    }
+    else {
+        close(fd[1]);
+        char read_msg[30];
+        read(fd[0], read_msg, sizeof(char) * 30);
+        char* c = read_msg;
+        while (*c) {
+            if ('a' <= *c && *c <= 'z') {
+                *c -= 32;
+            }
+            else if ('A' <= *c && *c <= 'Z') {
+                *c += 32;
+            }
+            printf("%c", *c);
+            c++;
+        }
+        printf("\n");
+        close(fd[0]);
+    }
+}
+```
