@@ -379,3 +379,59 @@ int main(int argc, char* argv[])
     }
 }
 ```
+
+# 3.27
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/time.h>
+
+// gcc -o filecopy ./filecopy.c
+// ./filecopy input.txt copy.txt
+
+// input.txt
+/*
+Hi!
+Nice to meet you.
+See you next time.
+*/
+
+int main(int argc, char* argv[])
+{
+    int fd[2];
+    pipe(fd);
+
+    FILE* src = fopen(argv[1], "r");
+    FILE* des = fopen(argv[2], "w");
+    
+    if (!fork()) {
+        close(fd[0]);
+        char write_msg[100];
+        char* p = write_msg;
+        while (fgets(p, sizeof(write_msg), src)) {
+            p = strchr(write_msg, 0);
+        }
+        write(fd[1], write_msg, strlen(write_msg) + 1);
+        close(fd[1]);
+    }
+    else {
+        close(fd[1]);
+        char read_msg[100];
+        read(fd[0], read_msg, sizeof(read_msg));
+        fprintf(des, "%s", read_msg);
+        close(fd[0]);
+    }
+    fclose(src);
+    fclose(des);
+    
+}
+```
