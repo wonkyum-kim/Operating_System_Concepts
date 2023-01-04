@@ -8,4 +8,4 @@
 
 - [ ] Excerises 
 - [ ] Problems 
-- [ ] Projects (in progress)
+- [ ] Projects
