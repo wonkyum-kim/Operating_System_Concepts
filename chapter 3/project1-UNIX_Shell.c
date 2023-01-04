@@ -151,14 +151,14 @@ int runcmd(char* cmd)
 int main(void)
 {
 	
-	int should_run = 1; /* flag to determine when to exit program */
+    int should_run = 1; /* flag to determine when to exit program */
 
     char* cmd = 0;
     char buf[MAX_LINE];
 	while (should_run) {
-        if (!(cmd = readcmd(buf)) || !runcmd(cmd)) {
-            should_run = 0;
-        }
+		if (!(cmd = readcmd(buf)) || !runcmd(cmd)) {
+		    should_run = 0;
+		}
 
 
 		/**
