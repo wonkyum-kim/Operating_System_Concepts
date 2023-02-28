@@ -1,11 +1,11 @@
 # Chapter 3. Process
 
-- [x] Excerises (complete)
+- [x] Exercises (complete)
 - [x] Problems (complete)
 - [ ] Projects (in progress)
 
 # Chapter 4. threads and concurrency
 
-- [ ] Excerises 
+- [ ] Exercises 
 - [ ] Problems 
 - [ ] Projects
