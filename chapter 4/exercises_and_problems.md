@@ -23,3 +23,9 @@ c. Global variables
 # 4.17
 
 (a) 5 (b) 2 
+
+# 4.19
+
+CHILD: value = 5
+
+PARENT: value = 0
