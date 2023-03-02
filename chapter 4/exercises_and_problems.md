@@ -29,3 +29,74 @@ c. Global variables
 CHILD: value = 5
 
 PARENT: value = 0
+
+# 4.22
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+#define NUM_THREADS 3
+#define ARRAY_SIZE 7
+
+int numbers[ARRAY_SIZE];
+double average;
+int max;
+int min;
+
+void* average_worker(void* arg) {
+    double sum = 0.0;
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
+        sum += numbers[i];
+    }
+    average = sum / ARRAY_SIZE;
+    pthread_exit(NULL);
+}
+
+void* max_worker(void* arg) {
+    max = numbers[0];
+    for (int i = 1; i < ARRAY_SIZE; ++i) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    pthread_exit(NULL);
+}
+
+void* min_worker(void* arg) {
+    min = numbers[0];
+    for (int i = 1; i < ARRAY_SIZE; ++i) {
+        if (numbers[i] < min) {
+            min = numbers[i];
+        }
+    }
+    pthread_exit(NULL);
+}
+
+int main(int argc, char **argv) {
+    pthread_t threads[NUM_THREADS];
+
+    // Get the numbers from the command line arguments
+    for (int i = 1; i <= ARRAY_SIZE; i++) {
+        numbers[i - 1] = atoi(argv[i]);
+    }
+
+    // Create the threads
+    pthread_create(&threads[0], NULL, average_worker, NULL);
+    pthread_create(&threads[1], NULL, max_worker, NULL);
+    pthread_create(&threads[2], NULL, min_worker, NULL);
+
+    // Wait for the threads to finish
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
+    // Print the results
+    printf("The average value is %.2f\n", average);
+    printf("The minimum value is %d\n", min);
+    printf("The maximum value is %d\n", max);
+
+    return 0;
+}
+```
