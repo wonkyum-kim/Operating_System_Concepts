@@ -19,3 +19,7 @@ c. Global variables
 (a) For input and output operations, since there is only one file being read and written, it is not necessary to create multiple threads. Instead, a single thread can be used to perform the input and output operations.
 
 (b) For the CPU-intensive portion of the application, since the system has four processors available for scheduling, it would be optimal to create four threads to fully utilize the available processing power. However, since the system has two dual-core processors, creating more than two threads may not result in a significant performance improvement due to the limitations of the hardware architecture. Therefore, it would be reasonable to create two threads for the CPU-intensive portion of the application.
+
+# 4.17
+
+(a) 5 (b) 2
