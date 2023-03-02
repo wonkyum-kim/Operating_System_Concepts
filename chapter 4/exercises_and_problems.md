@@ -100,3 +100,74 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
+# 4. 23
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+void* print_primes(void* args);
+
+int main(int argc, char* argv[]) {
+
+    pthread_t tid;
+
+    if (argc < 2) {
+        printf("Please provide a number as command line argument.\n");
+        return 1;
+    }
+
+    int num = atoi(argv[1]);
+
+    if (num < 2) {
+        printf("Please enter a number greater than or equal to 2.\n");
+        return 1;
+    }
+
+    pthread_create(&tid, NULL, print_primes, (void*)&num);
+    pthread_join(tid, NULL);
+
+    return 0;
+}
+
+void Eratosthenes(int* sieve, int num) {
+    for (int i = 1; i < num + 1; ++i) {
+        sieve[i] = 1;
+    }
+    sieve[1] = 0;
+    
+    for (int i = 2; i <= num; ++i) {
+        if (!sieve[i]) {
+            continue;
+        }
+        for (int j = 2 * i; j <= num; j += i) {
+            sieve[j] = 0;
+        }
+    }
+    return;
+}
+
+void* print_primes(void* args) {
+    int num = *((int*)args);
+    int* sieve = malloc(sizeof(int) * (num + 1));
+
+    if (sieve == NULL) {
+        printf("Memory allocation error.\n");
+        pthread_exit(NULL);
+    }
+
+    // Eratosthenes's sieve
+    Eratosthenes(sieve, num);
+
+    for (int i = 1; i <= num; ++i) {
+        if (sieve[i]) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+
+    free(sieve);
+    pthread_exit(NULL);
+}
+```
