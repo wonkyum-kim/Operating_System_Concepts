@@ -171,3 +171,57 @@ void* print_primes(void* args) {
     pthread_exit(NULL);
 }
 ```
+# 4.24
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <math.h>
+
+#define NUM_THREADS 4
+#define TOTAL_POINTS 10000000
+
+double points_in_circle = 0;
+pthread_mutex_t lock;
+
+void* calculate_pi(void* arg) {
+    int num_points = *(int*)arg;
+    double x, y, distance;
+
+    for (int i = 0; i < num_points; ++i) {
+        x = -1.0 + 2.0 * (double)rand() / RAND_MAX;  
+        y = -1.0 + 2.0 * (double)rand() / RAND_MAX;  
+        distance = sqrt(x * x + y * y);
+        if (distance <= 1) {
+            pthread_mutex_lock(&lock);
+            points_in_circle++;
+            pthread_mutex_unlock(&lock);
+        }
+    }
+    pthread_exit(NULL);
+}
+
+int main() {
+    int num_points = TOTAL_POINTS / NUM_THREADS;
+    double pi_estimate;
+    pthread_t threads[NUM_THREADS];
+
+    pthread_mutex_init(&lock, NULL);
+
+    for (int i = 0; i < NUM_THREADS; ++i) {
+        pthread_create(&threads[i], NULL, calculate_pi, (void*)&num_points);
+    }
+
+    for (int i = 0; i < NUM_THREADS; ++i) {
+        pthread_join(threads[i], NULL);
+    }
+
+    pi_estimate = 4 * points_in_circle / TOTAL_POINTS;
+    printf("Estimated value of pi: %f\n", pi_estimate);
+
+    pthread_mutex_destroy(&lock);
+
+    return 0;
+}
+```
