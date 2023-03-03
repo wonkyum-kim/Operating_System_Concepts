@@ -45,7 +45,8 @@ double average;
 int max;
 int min;
 
-void* average_worker(void* arg) {
+void* average_worker(void* arg) 
+{
     double sum = 0.0;
     for (int i = 0; i < ARRAY_SIZE; ++i) {
         sum += numbers[i];
@@ -54,7 +55,8 @@ void* average_worker(void* arg) {
     pthread_exit(NULL);
 }
 
-void* max_worker(void* arg) {
+void* max_worker(void* arg) 
+{
     max = numbers[0];
     for (int i = 1; i < ARRAY_SIZE; ++i) {
         if (numbers[i] > max) {
@@ -64,7 +66,8 @@ void* max_worker(void* arg) {
     pthread_exit(NULL);
 }
 
-void* min_worker(void* arg) {
+void* min_worker(void* arg) 
+{
     min = numbers[0];
     for (int i = 1; i < ARRAY_SIZE; ++i) {
         if (numbers[i] < min) {
@@ -74,7 +77,8 @@ void* min_worker(void* arg) {
     pthread_exit(NULL);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
     pthread_t threads[NUM_THREADS];
 
     // Get the numbers from the command line arguments
@@ -109,7 +113,8 @@ int main(int argc, char **argv) {
 
 void* print_primes(void* args);
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) 
+{
 
     pthread_t tid;
 
@@ -131,7 +136,8 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-void Eratosthenes(int* sieve, int num) {
+void Eratosthenes(int* sieve, int num) 
+{
     for (int i = 1; i < num + 1; ++i) {
         sieve[i] = 1;
     }
@@ -148,7 +154,8 @@ void Eratosthenes(int* sieve, int num) {
     return;
 }
 
-void* print_primes(void* args) {
+void* print_primes(void* args) 
+{
     int num = *((int*)args);
     int* sieve = malloc(sizeof(int) * (num + 1));
 
@@ -185,7 +192,8 @@ void* print_primes(void* args) {
 double points_in_circle = 0;
 pthread_mutex_t lock;
 
-void* calculate_pi(void* arg) {
+void* calculate_pi(void* arg) 
+{
     int num_points = *(int*)arg;
     double x, y, distance;
 
@@ -202,7 +210,8 @@ void* calculate_pi(void* arg) {
     pthread_exit(NULL);
 }
 
-int main() {
+int main() 
+{
     int num_points = TOTAL_POINTS / NUM_THREADS;
     double pi_estimate;
     pthread_t threads[NUM_THREADS];
@@ -237,7 +246,8 @@ int main() {
 int sequence[MAX_SEQUENCE]; // shared array for storing Fibonacci sequence
 int sequence_size; // size of sequence to generate
 
-void *generate_fibonacci(void *arg) {
+void *generate_fibonacci(void *arg) 
+{
     int i;
     sequence[0] = 0;
     sequence[1] = 1;
@@ -247,7 +257,8 @@ void *generate_fibonacci(void *arg) {
     pthread_exit(NULL);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <sequence size>\n", argv[0]);
         return -1;
@@ -270,5 +281,93 @@ int main(int argc, char *argv[]) {
     printf("\n");
 
     return 0;
+}
+```
+# 4.28
+
+```c
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <pthread.h>
+#include <time.h>
+
+#define MIN_PID 300
+#define MAX_PID 5000
+#define NUM_THREADS 100
+
+int* pid_pool;
+
+int allocate_map(void)
+{
+    pid_pool = (int*)malloc(sizeof(int) * (MAX_PID - MIN_PID));
+    memset(pid_pool, 0, sizeof(int) * (MAX_PID - MIN_PID));
+    return pid_pool ? 1 : -1;
+}
+
+int allocate_pid(void)
+{
+    int flag = -1;
+    for (int i = 0; i < MAX_PID - MIN_PID; ++i) {
+        if (pid_pool[i] & 1) {
+            continue;
+        }
+        pid_pool[i] = 1;
+        flag = i + MIN_PID;
+        break;
+    }
+    return flag;
+}
+
+void release_pid(int pid)
+{
+    pid_pool[pid - MIN_PID] = 0;
+}
+
+void* pid_manager()
+{
+    int pid = allocate_pid();
+    if (pid == -1) {
+        printf("Error: Unable to allocate PID. Exiting thread \n");
+        pthread_exit(NULL);
+    }
+    printf("Allocated PID %d.\n", pid);
+
+    srand(time(NULL));
+    int sleep_time = rand() % 10;
+    sleep(sleep_time);
+
+    release_pid(pid);
+    printf("Released PID %d.\n", pid);
+
+    pthread_exit(NULL);
+}
+
+int main()
+{
+    if (allocate_map() == -1) {
+        printf("Error: Unable to allocate PID map.\n");
+        return 0;
+    }
+
+    pthread_t threads[NUM_THREADS];
+    int rc;
+
+    for (int i = 0; i < NUM_THREADS; ++i) {
+        rc = pthread_create(&threads[i], NULL, pid_manager, NULL);
+        if (rc) {
+            printf("Error: Unable to create thread\n");
+            return 0;
+        }
+    }
+
+    for (int i = 0; i < NUM_THREADS; ++i) {
+        pthread_join(threads[i], NULL);
+    }
+
+    free(pid_pool);
 }
 ```
