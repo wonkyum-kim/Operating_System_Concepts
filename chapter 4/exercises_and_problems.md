@@ -225,3 +225,50 @@ int main() {
     return 0;
 }
 ```
+# 4.27
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+#define MAX_SEQUENCE 30 // maximum size of Fibonacci sequence
+
+int sequence[MAX_SEQUENCE]; // shared array for storing Fibonacci sequence
+int sequence_size; // size of sequence to generate
+
+void *generate_fibonacci(void *arg) {
+    int i;
+    sequence[0] = 0;
+    sequence[1] = 1;
+    for (i = 2; i < sequence_size; i++) {
+        sequence[i] = sequence[i-1] + sequence[i-2];
+    }
+    pthread_exit(NULL);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <sequence size>\n", argv[0]);
+        return -1;
+    }
+    sequence_size = atoi(argv[1]);
+    if (sequence_size <= 0 || sequence_size > MAX_SEQUENCE) {
+        fprintf(stderr, "Sequence size must be between 1 and %d\n", MAX_SEQUENCE);
+        return -1;
+    }
+
+    pthread_t fibonacci_thread;
+    int rc = pthread_create(&fibonacci_thread, NULL, generate_fibonacci, NULL);
+
+    pthread_join(fibonacci_thread, NULL);
+
+    printf("Fibonacci sequence:\n");
+    for (int i = 0; i < sequence_size; i++) {
+        printf("%d ", sequence[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
