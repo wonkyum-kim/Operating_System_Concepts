@@ -49,6 +49,14 @@ C : 2603
 D : 2600
 ```
 
+# 3.14
+
+Example 1: Ordinary Pipes
+Suppose you have two related processes, and one process needs to send a large amount of data to the other process. In this case, an ordinary pipe would be more suitable because it is a unidirectional communication channel that can efficiently transfer data between related processes. Since the two processes are related, there is no need for a named pipe to establish communication between them.
+
+Example 2: Named Pipes
+Suppose you have a client-server architecture where multiple clients need to send requests to the server, and the server needs to respond to each request individually. In this case, a named pipe would be more suitable because it is a bidirectional communication channel that can be used by any process with appropriate permissions. Each client could establish a connection to the named pipe, send their request, and wait for the server to respond. The server could then read the request from the named pipe and send the response back to the appropriate client.
+
 # 3.18
 
 ```c
