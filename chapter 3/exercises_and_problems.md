@@ -66,29 +66,33 @@ PARENT: 0 PARENT: 1 PARENT: 2 PARENT: 3 PARENT: 4
 # 3.18
 
 ```c
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-int main()
+int main() 
 {
-    pid_t pid = fork();
+    pid_t pid;
 
-    if (pid == 0) {
+    // fork a child process
+    pid = fork();
+
+    if (pid == 0) {        // child process
         exit(0);
+    } else if (pid > 0) {. // parent process
+        sleep(10);         // wait for the child to become a zombie
     }
-    else {
-        sleep(10);
-        char kill[100] = "kill -9 ";
-        char process[100];
-        sprintf(process, "%d", getpid());
-        strcat(kill, process);
-        system(kill);
-    }
+
     return 0;
 }
+```
+
+```bash
+gcc zombie.c -o zombie
+./zombie &
+ps -l
+kill -9 <parent_pid>
 ```
 
 # 3.19
