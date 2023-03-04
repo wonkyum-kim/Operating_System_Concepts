@@ -24,6 +24,14 @@ c. shared memory segments
 
 6. Resume execution: The kernel transfers control to the new process and allows it to resume execution. The new process will continue running until it either completes its work or is preempted by the kernel.
 
+# 3.10
+
+1. Reaping zombie processes: When a process terminates, its exit status and other information is stored in the process table until the parent process can read it. If the parent process does not read this information, the terminated process becomes a "zombie" process, which can consume system resources and cause problems. The init process is responsible for periodically checking for and reaping any zombie processes that have not been properly cleaned up.
+
+2. Stopping dependent processes: Some processes may have other processes that depend on them, either directly or indirectly. When a process is terminated, the init process is responsible for identifying any dependent processes and ensuring that they are also terminated, if necessary. For example, if a web server process is terminated, the init process may need to terminate any running CGI scripts or database processes that were being used by the server.
+
+3. Cleaning up resources: When a process is terminated, it may be holding system resources such as memory, file handles, or network sockets. The init process is responsible for ensuring that any resources held by the terminated process are released, so that they can be used by other processes.
+
 # 3.11
 
 16 processes are creeated including the initial parent process.
