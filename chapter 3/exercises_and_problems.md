@@ -57,6 +57,12 @@ Suppose you have two related processes, and one process needs to send a large am
 Example 2: Named Pipes
 Suppose you have a client-server architecture where multiple clients need to send requests to the server, and the server needs to respond to each request individually. In this case, a named pipe would be more suitable because it is a bidirectional communication channel that can be used by any process with appropriate permissions. Each client could establish a connection to the named pipe, send their request, and wait for the server to respond. The server could then read the request from the named pipe and send the response back to the appropriate client.
 
+# 3.16
+
+CHILD: 0 CHILD: -1 CHILD: -4 CHILD: -9 CHILD: -16
+
+PARENT: 0 PARENT: 1 PARENT: 2 PARENT: 3 PARENT: 4
+
 # 3.18
 
 ```c
