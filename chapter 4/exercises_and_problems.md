@@ -28,6 +28,20 @@ One type of thread may be better than the other depending on the requirements of
 
 2. Kernel-level threads, on the other hand, provide better support for synchronization and scheduling, making them more suitable for applications that require high levels of concurrency and need to perform I/O operations or other system calls that may block the thread. They are also more suitable for applications that require precise control over thread scheduling and priority. However, they are less efficient than user-level threads due to the overhead of context switching between kernel and user space.
 
+# 4.5
+
+1. Save the current thread context: The kernel saves the context of the current thread, including its CPU registers, program counter, and other relevant state information, to a data structure associated with the thread.
+
+2. Select the next thread to run: The kernel selects the next thread to run, based on a scheduling algorithm that takes into account factors such as thread priority, time quantum, and other factors.
+
+3. Restore the next thread context: The kernel restores the context of the next thread to run from the data structure associated with the thread, including its CPU registers, program counter, and other relevant state information.
+
+4. Update kernel data structures: The kernel updates various data structures associated with the threads, such as the run queue and scheduling information.
+
+5. Switch to user mode: The kernel switches the processor to user mode, allowing the next thread to resume execution from where it left off.
+
+Context switching between kernel-level threads is a complex operation that involves significant overhead, due to the need to save and restore both the user-level and kernel-level contexts of the threads. As a result, kernel-level threads are generally less efficient than user-level threads, which are managed entirely in user space and involve only the saving and restoring of user-level context.
+
 # 4.10
 
 b. Heap memory
