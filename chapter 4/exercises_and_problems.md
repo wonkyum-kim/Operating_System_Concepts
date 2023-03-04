@@ -1,3 +1,11 @@
+# 4.1
+
+Image processing: When performing image processing tasks, such as applying filters or transformations, multithreading can greatly improve performance. By dividing the image into smaller sections and processing each section in parallel on different threads, the overall processing time can be reduced significantly.
+
+Web server: Web servers often have to handle multiple requests simultaneously. By using multithreading, the server can handle multiple requests at the same time, without having to wait for each request to be processed before moving on to the next one.
+
+Data processing: When dealing with large amounts of data, such as in data mining or analysis, multithreading can help speed up the process. By breaking up the data into smaller chunks and processing each chunk on a separate thread, the overall processing time can be reduced, allowing for faster analysis and insights.
+
 # 4.2
 
 (a) 1.4 (b) 1.8
