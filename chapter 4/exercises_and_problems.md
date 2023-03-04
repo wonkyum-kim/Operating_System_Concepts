@@ -42,6 +42,32 @@ One type of thread may be better than the other depending on the requirements of
 
 Context switching between kernel-level threads is a complex operation that involves significant overhead, due to the need to save and restore both the user-level and kernel-level contexts of the threads. As a result, kernel-level threads are generally less efficient than user-level threads, which are managed entirely in user space and involve only the saving and restoring of user-level context.
 
+# 4.6
+
+When a thread is created, some resources are used to set up the thread's execution context and environment. These resources typically include:
+
+1. Stack space: A new stack is allocated for the thread, which is used to store local variables and function calls.
+
+2. Program counter: The program counter is initialized to the starting point of the thread's code.
+
+3. Register values: The thread's register values are initialized to default values.
+
+4. Thread-local storage: Thread-local storage is allocated for the thread, which is used to store thread-specific data.
+
+5. Operating system data structures: The operating system creates various data structures to manage the thread, such as a thread control block (TCB) and a scheduling priority.
+
+When a process is created, a different set of resources are used to set up the process's execution context and environment. These resources typically include:
+
+1. Address space: A new address space is created for the process, which includes a code section, data section, and heap.
+
+2. Program counter: The program counter is initialized to the entry point of the process's code.
+
+3. File descriptors: The process is given file descriptors for standard input, standard output, and standard error.
+
+4. Operating system data structures: The operating system creates various data structures to manage the process, such as a process control block (PCB) and a set of kernel resources.
+
+The main difference between the resources used when a thread is created and those used when a process is created is that a thread shares many resources with the process it belongs to. For example, threads within a process share the same address space, file descriptors, and operating system data structures. This means that creating a new thread is generally faster and requires fewer resources than creating a new process. However, each thread within a process requires its own stack space and thread-local storage, which adds to the memory overhead of the process. In contrast, each process has its own address space and resources, which can lead to greater memory overhead but also greater isolation between processes.
+
 # 4.10
 
 b. Heap memory
