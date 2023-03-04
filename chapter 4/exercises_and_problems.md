@@ -10,6 +10,10 @@ Data processing: When dealing with large amounts of data, such as in data mining
 
 (a) 1.43 (b) 1.18
 
+# 4.3
+
+The multithreaded web server described in Section 4.1 exhibit task parallelism.
+
 # 4.10
 
 b. Heap memory
