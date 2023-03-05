@@ -110,6 +110,12 @@ To prevent this from happening, some systems limit the ability to assign nice va
 
 b, d
 
+# 5.28
+
+In an SMP (Symmetric Multi-Processing) environment, multiple processors are present, and they all share access to the main memory and other system resources. When a shared ready queue is used in such an environment, the ready queue becomes a shared resource, and all processors have to access it to retrieve the next process to run. However, because the ready queue is a shared resource, multiple processors may try to access it simultaneously, leading to contention for the resource.
+
+This contention can cause performance problems because when one processor is accessing the ready queue, other processors may have to wait for access. This waiting time can lead to wasted CPU cycles and reduced overall system performance. Additionally, if the ready queue is not properly managed, it can become a bottleneck, as processes may spend too much time waiting in the queue rather than executing on a processor.
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
