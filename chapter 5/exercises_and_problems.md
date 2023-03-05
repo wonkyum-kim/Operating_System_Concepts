@@ -13,3 +13,11 @@ a. (8 + 11.6 + 12) / 3 = 10.53
 b. (8 + 8 + 12.6) / 3 = 9.53
 
 c. (1 + 5.6 + 14) / 3 = 6.87
+
+# 5.6
+
+Better response time for interactive processes: Interactive processes usually have higher priority and are placed in a higher-priority queue. With a shorter time quantum for the high-priority queue, interactive processes can be quickly scheduled and get a faster response time.
+
+Prevention of starvation: Processes in lower-priority queues can be scheduled with longer time-quantum sizes, which ensures that they have enough time to complete their work. This approach prevents the starvation of low-priority processes, which could happen if they were always preempted by high-priority processes.
+
+Improved throughput: Different types of processes have different resource requirements, and different time-quantum sizes can help optimize resource utilization. For example, I/O-bound processes may benefit from longer time quantums in the I/O queue, while CPU-bound processes may benefit from shorter time quantums in the CPU queue. By optimizing time-quantum sizes for each queue, the system can achieve higher throughput.
