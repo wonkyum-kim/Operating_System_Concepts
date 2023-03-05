@@ -12,6 +12,6 @@
 
 # Chapter 5. CPU Scheduling
 
-- [ ] Exercises 
+- [x] Exercises 
 - [ ] Problems 
 - [ ] Projects
