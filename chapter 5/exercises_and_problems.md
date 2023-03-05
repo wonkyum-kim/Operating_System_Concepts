@@ -52,6 +52,38 @@ c. I/O device utilization and CPU utilization: I/O device utilization and CPU ut
 
 The BTV scheduler can ensure that higher-priority threads receive more attention from the CPU than lower-priority threads by assigning a greater number of lottery tickets to the higher-priority threads. When a scheduling decision is made, the lottery ticket chosen at random is more likely to belong to a higher-priority thread than a lower-priority thread, resulting in higher-priority threads being executed more frequently.
 
+# 5.14
+
+Option 1: Each processing core has its own run queue
+```
+Advantages:
+
+The run queue for each core can be optimized for that specific core's performance characteristics, such as cache size and memory bandwidth.
+There is no contention for access to the run queue between processing cores, which can improve scalability and reduce synchronization overhead.
+The run queue can be assigned to a specific core, allowing the scheduler to manage the workloads of each core independently.
+
+Disadvantages:
+
+Processes may be imbalanced across cores, leading to uneven utilization and performance degradation.
+Moving processes between run queues can add overhead to the scheduling process.
+Inter-core communication may be required to balance workloads across cores, which can incur additional overhead.
+```
+
+Option 2: A single run queue is shared by all processing cores
+```
+Advantages:
+
+Load balancing across cores can be achieved automatically by scheduling processes to the core with the lightest workload.
+There is only one run queue to maintain, reducing the overhead of synchronization and memory management.
+Processes can be migrated between cores more easily, allowing for more efficient utilization of resources.
+
+Disadvantages:
+
+Contentions for access to the run queue can occur, which can limit scalability and lead to performance degradation.
+The run queue may not be optimized for the performance characteristics of any one core.
+Inter-core communication may be required to manage access to the run queue, which can incur additional overhead.
+```
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
