@@ -84,6 +84,16 @@ The run queue may not be optimized for the performance characteristics of any on
 Inter-core communication may be required to manage access to the run queue, which can incur additional overhead.
 ```
 
+# 5.15
+
+a. α = 0 and τ0 = 100 milliseconds
+
+If α = 0, then τn+1 = τn, and recent history has no effect (current conditions are assumed to be transient).
+
+b. α = 0.99 and τ0 = 10 milliseconds
+
+If α = 1, then τn+1 = tn, and only the most recent CPU burst matters (history is assumed to be old and irrelevant).
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
