@@ -35,3 +35,7 @@ The main difference between PCS and SCS scheduling is that in PCS, the process i
 Therefore, the new priority order is P3 > P2 > P1.
 
 The traditional UNIX scheduler lowers the relative priority of a CPU-bound process.
+
+# 5.11
+
+I/O-bound programs are more likely to have voluntary context switches because they spend most of their time waiting for input/output operations to complete, while CPU-bound programs are more likely to have non-voluntary context switches because they spend most of their time performing CPU-intensive computations.
