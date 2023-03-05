@@ -25,3 +25,13 @@ Improved throughput: Different types of processes have different resource requir
 # 5.9
 
 The main difference between PCS and SCS scheduling is that in PCS, the process itself determines when it should be scheduled, while in SCS, the operating system is responsible for making scheduling decisions.
+
+# 5.10
+
+- Process P1: (40 / 2) + 60 = 80
+- Process P2: (18 / 2) + 60 = 69
+- Process P3: (10 / 2) + 60 = 65
+
+Therefore, the new priority order is P3 > P2 > P1.
+
+The traditional UNIX scheduler lowers the relative priority of a CPU-bound process.
