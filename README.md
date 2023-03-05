@@ -9,3 +9,9 @@
 - [x] Exercises 
 - [x] Problems 
 - [ ] Projects
+
+# Chapter 5. CPU Scheduling
+
+- [ ] Exercises 
+- [ ] Problems 
+- [ ] Projects
