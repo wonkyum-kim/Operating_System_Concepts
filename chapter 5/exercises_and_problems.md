@@ -106,6 +106,10 @@ However, allowing users to assign nice values < 0 can potentially impact the per
 
 To prevent this from happening, some systems limit the ability to assign nice values < 0 to the root user (or administrator). This ensures that only privileged users who have the necessary expertise and responsibility can modify the priority of processes in the system, and helps prevent unintentional or malicious behavior that could impact the overall system performance and stability.
 
+# 5.20
+
+b, d
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
