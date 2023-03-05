@@ -48,6 +48,10 @@ b. Average turnaround time and maximum waiting time: The goal of minimizing aver
 
 c. I/O device utilization and CPU utilization: I/O device utilization and CPU utilization can conflict when multiple processes are contending for access to the same I/O device. If the CPU is idle while waiting for I/O operations to complete, this can result in lower CPU utilization. On the other hand, if the CPU is busy executing other tasks while waiting for I/O operations to complete, this can result in higher CPU utilization but may cause I/O operations to take longer to complete. In some cases, a trade-off must be made between optimizing I/O device utilization and CPU utilization. For example, using interrupt-driven I/O can help maximize I/O device utilization but may result in higher CPU utilization. Alternatively, using polling-based I/O can help minimize CPU utilization but may result in lower I/O device utilization.
 
+# 5.13
+
+The BTV scheduler can ensure that higher-priority threads receive more attention from the CPU than lower-priority threads by assigning a greater number of lottery tickets to the higher-priority threads. When a scheduling decision is made, the lottery ticket chosen at random is more likely to belong to a higher-priority thread than a lower-priority thread, resulting in higher-priority threads being executed more frequently.
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
