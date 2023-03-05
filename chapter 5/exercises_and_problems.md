@@ -40,6 +40,14 @@ The traditional UNIX scheduler lowers the relative priority of a CPU-bound proce
 
 I/O-bound programs are more likely to have voluntary context switches because they spend most of their time waiting for input/output operations to complete, while CPU-bound programs are more likely to have non-voluntary context switches because they spend most of their time performing CPU-intensive computations.
 
+# 5.12
+
+a. CPU utilization and response time: In some cases, optimizing CPU utilization can result in longer response times for interactive applications. For example, if the CPU is busy executing long-running computational tasks, an interactive application may be starved for CPU time and may appear unresponsive to the user. On the other hand, prioritizing response time over CPU utilization may result in lower CPU utilization, as the CPU may spend more time idle waiting for input/output operations to complete.
+
+b. Average turnaround time and maximum waiting time: The goal of minimizing average turnaround time conflicts with the goal of minimizing maximum waiting time. Minimizing average turnaround time requires that all processes be scheduled quickly and efficiently, but this may result in some processes waiting for longer periods of time. Minimizing maximum waiting time requires prioritizing processes that have been waiting the longest, but this may result in some processes having longer overall turnaround times.
+
+c. I/O device utilization and CPU utilization: I/O device utilization and CPU utilization can conflict when multiple processes are contending for access to the same I/O device. If the CPU is idle while waiting for I/O operations to complete, this can result in lower CPU utilization. On the other hand, if the CPU is busy executing other tasks while waiting for I/O operations to complete, this can result in higher CPU utilization but may cause I/O operations to take longer to complete. In some cases, a trade-off must be made between optimizing I/O device utilization and CPU utilization. For example, using interrupt-driven I/O can help maximize I/O device utilization but may result in higher CPU utilization. Alternatively, using polling-based I/O can help minimize CPU utilization but may result in lower I/O device utilization.
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
