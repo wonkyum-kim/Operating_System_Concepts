@@ -39,3 +39,15 @@ The traditional UNIX scheduler lowers the relative priority of a CPU-bound proce
 # 5.11
 
 I/O-bound programs are more likely to have voluntary context switches because they spend most of their time waiting for input/output operations to complete, while CPU-bound programs are more likely to have non-voluntary context switches because they spend most of their time performing CPU-intensive computations.
+
+# 5.37
+
+1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
+
+2. Better performance: A heterogeneous multiprocessing system can provide better performance than a system with only one type of processing core. The high-performance cores can handle more demanding tasks, while the low-power cores can handle background tasks, resulting in a smoother and more responsive user experience.
+
+3. More flexibility: Different types of processing cores can be used for different types of tasks, allowing a mobile system to be optimized for specific workloads. For example, a system could use high-performance cores for gaming and low-power cores for background tasks.
+
+4. Reduced cost: By using a combination of high-performance and low-power cores, a mobile system can achieve better performance without the need for expensive high-performance cores for every task.
+
+5. Scalability: A heterogeneous multiprocessing system can be easily scaled to meet changing performance requirements. As the demands of mobile applications increase, additional high-performance or low-power cores can be added to the system.
