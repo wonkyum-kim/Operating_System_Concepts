@@ -98,6 +98,14 @@ If α = 1, then τn+1 = tn, and only the most recent CPU burst matters (history 
 
 The regressive round-robin scheduler is designed to favor CPU-bound processes over I/O-bound processes. This is because the scheduler increases the time quantum of a process that uses its entire time quantum (i.e., completes its CPU burst without blocking for I/O), and boosts its priority level. In contrast, if a process blocks for I/O before using its entire time quantum, its time quantum is reduced, but its priority remains the same.
 
+# 5.19
+
+The nice value is a parameter that affects the priority of a process in the scheduling queue. A higher nice value indicates a lower priority, while a lower nice value indicates a higher priority. In general, allowing any user to assign a process a nice value >= 0 is considered safe, as it only lowers the priority of the process and does not affect the overall system performance.
+
+However, allowing users to assign nice values < 0 can potentially impact the performance and stability of the system. Setting a process to a negative nice value gives it a higher priority, which means it will have more access to the CPU resources and can potentially starve other processes of CPU time. This can lead to degraded system performance and stability, as other processes may become unresponsive or fail to complete their tasks on time.
+
+To prevent this from happening, some systems limit the ability to assign nice values < 0 to the root user (or administrator). This ensures that only privileged users who have the necessary expertise and responsibility can modify the priority of processes in the system, and helps prevent unintentional or malicious behavior that could impact the overall system performance and stability.
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
