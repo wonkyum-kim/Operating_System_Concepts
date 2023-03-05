@@ -94,6 +94,10 @@ b. α = 0.99 and τ0 = 10 milliseconds
 
 If α = 1, then τn+1 = tn, and only the most recent CPU burst matters (history is assumed to be old and irrelevant).
 
+# 5.16
+
+The regressive round-robin scheduler is designed to favor CPU-bound processes over I/O-bound processes. This is because the scheduler increases the time quantum of a process that uses its entire time quantum (i.e., completes its CPU burst without blocking for I/O), and boosts its priority level. In contrast, if a process blocks for I/O before using its entire time quantum, its time quantum is reduced, but its priority remains the same.
+
 # 5.37
 
 1. Improved power efficiency: By using low-power cores for less demanding tasks, a mobile system can save power and extend battery life. High-performance cores can be used for more demanding tasks, but they can be turned off when not needed, reducing power consumption.
