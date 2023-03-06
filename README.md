@@ -16,7 +16,7 @@
 - [x] Problems 
 - [ ] Projects
 
-# Chapter 5. Synchroization Tools
+# Chapter 6. Synchroization Tools
 
 - [x] Exercises 
 - [ ] Problems 
