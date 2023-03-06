@@ -73,3 +73,7 @@ is_empty() {
     return empty;
 }
 ```
+
+# 6.9
+
+There are no race conditions in the above code example. Each computing core only accesses and modifies its own element in the array, and there are no shared variables or resources that can lead to data inconsistency or corruption.
