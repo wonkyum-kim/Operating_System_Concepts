@@ -33,3 +33,43 @@ However, spinlocks are often used in multiprocessor systems because they are eff
 # 6.5
 
 The general idea is that each process that wants to access a shared resource first tries to acquire the binary semaphore. If the semaphore is currently available (value 1), the process can access the shared resource and set the semaphore to unavailable (value 0). After the process is finished accessing the shared resource, it releases the binary semaphore, allowing other processes to acquire it.
+
+# 6.7
+
+a. The data that have a race condition are the shared variables top and stack.
+
+b. 
+
+```c
+push(item) {
+    lock();
+    if (top < SIZE) {
+        stack[top] = item;
+        top++;
+    }
+    else {
+        ERROR
+    }
+    unlock();
+}
+
+pop() {
+    lock();
+    if (!is_empty()) {
+        top--;
+        int item = stack[top];
+        return item;
+    }
+    else {
+        ERROR
+    }
+    unlock();
+}
+
+is_empty() {
+    lock();
+    bool empty = (top == 0);
+    unlock();
+    return empty;
+}
+```
