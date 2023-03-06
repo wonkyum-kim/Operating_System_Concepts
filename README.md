@@ -4,7 +4,7 @@
 - [x] Problems 
 - [ ] Projects (in progress)
 
-# Chapter 4. threads and concurrency
+# Chapter 4. Threads and Concurrency
 
 - [x] Exercises 
 - [x] Problems 
@@ -15,3 +15,8 @@
 - [x] Exercises 
 - [x] Problems 
 - [ ] Projects
+
+# Chapter 5. Synchroization Tools
+
+- [x] Exercises 
+- [ ] Problems 
