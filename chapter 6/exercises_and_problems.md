@@ -23,3 +23,9 @@ In an operating system, there are several other kinds of waiting that can occur,
 3. Interrupt waiting: A process is waiting for an interrupt to occur, which will signal that an event has happened or that a task has completed.
 
 Busy waiting can be avoided altogether in some cases. One way to avoid busy waiting is to use sleep waiting, where a process can give up the CPU and wait for a specified period before resuming execution. Another approach is to use semaphores or other synchronization primitives to manage access to shared resources, allowing processes to wait in a blocked state until the resource becomes available.
+
+# 6.3
+
+Spinlocks are not appropriate for single-processor systems because they waste CPU cycles. In a single-processor system, when a thread is spinning in a loop waiting for a lock to become available, it prevents other threads from executing, effectively monopolizing the CPU. This results in wasted CPU cycles and can cause performance degradation.
+
+However, spinlocks are often used in multiprocessor systems because they are efficient in such environments. In a multiprocessor system, multiple threads or processes can execute simultaneously on different processors. When a thread or process attempts to acquire a spinlock that is already held by another thread or process, it can simply spin on its own processor without monopolizing other processors. This allows other threads or processes to continue executing on other processors, which can lead to better overall system performance.
