@@ -12,6 +12,10 @@ By separating the command interpreter from the kernel, the operating system achi
 
 Three system calls (fork(), exec(), and wait()) form the core sequence used by a command interpreter or shell to start a new process on a UNIX system. 
 
+# 2.4
+
+The purpose of system programs is to provide a convenient environment for program development and execution.
+
 # 2.5
 
 The main advantage of the layered approach is simplicity of construction and debugging. 
