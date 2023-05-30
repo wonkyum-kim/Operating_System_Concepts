@@ -2,13 +2,13 @@
 
 - [ ] Exercises 
 - [ ] Problems 
-- [ ] Projects (in progress)
+- [ ] Projects 
 
 # Chapter 3. Process
 
 - [x] Exercises 
 - [x] Problems 
-- [ ] Projects (in progress)
+- [ ] Projects 
 
 # Chapter 4. Threads and Concurrency
 
