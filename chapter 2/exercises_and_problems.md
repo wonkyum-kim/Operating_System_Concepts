@@ -25,3 +25,16 @@ However, layered approach may introduce performance overhead, rigidity, duplicat
 # 2.6
 
 See chapter 2.1 Operating-System Serveices.
+
+# 2.7 
+
+It depends on the design and implementation of the operating system.
+
+# 2.8
+
+Designing a system to allow a choice of operating systems during boot requires implementing a mechanism commonly known as a bootstrap.
+
+- Load the file containing the kernel program into memory.
+- Run diagnostics to determine the state of the machine (inspecting memory and the CPU and discovering devices).
+-  Initialize all aspects of the system, from CPU registers to device controllers and the contents of main memory.
+- Start the operating system and mounts the root file system.
