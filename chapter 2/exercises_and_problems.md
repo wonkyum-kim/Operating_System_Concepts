@@ -52,3 +52,11 @@ In some cases, there may be more parameters than registers. In these cases, the 
 3. Stack Passing:
 
 Parameters also can be placed, or pushed, onto a stack by the program and popped off the stack by the operating system.
+
+# 2.16
+
+APIs and ABIs serve different purposes in software development. 
+
+APIs focus on the programming interface and provide a higher-level abstraction for developers to build applications, while ABIs define the low-level binary interface between modules and the system, ensuring interoperability at the binary level. 
+
+APIs offer portability and compatibility, while ABIs are platform-specific and require adherence to specific binary-level conventions.
