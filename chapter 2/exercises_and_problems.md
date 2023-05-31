@@ -72,3 +72,79 @@ APIs offer portability and compatibility, while ABIs are platform-specific and r
 # 2.20
 
 Using LKM doesn't have to recompile the kernel every time a change was made.
+
+# 2.24 
+
+gcc FileCopy.c -std=c11 -o FileCopy
+
+strace ./FileCopy
+
+```c
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 4096
+
+int main()
+{
+    char sourceFile[100], destFile[100];
+    int sourceFd, destFd;
+    ssize_t bytesRead, bytesWritten;
+    char buffer[BUFFER_SIZE];
+
+    // Prompt for source file
+    printf("Enter the name of the source file: ");
+    scanf("%s", sourceFile);
+
+    // Open source file for reading
+    sourceFd = open(sourceFile, O_RDONLY);
+    if (sourceFd == -1) {
+        perror("Error opening source file");
+        exit(EXIT_FAILURE);
+    }
+
+    // Prompt for destination file
+    printf("Enter the name of the destination file: ");
+    scanf("%s", destFile);
+
+    // Open destination file for writing (create if it doesn't exist, truncate if it does)
+    destFd = open(destFile, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+    if (destFd == -1) {
+        perror("Error opening destination file");
+        exit(EXIT_FAILURE);
+    }
+
+    // Copy contents from source to destination
+    while ((bytesRead = read(sourceFd, buffer, BUFFER_SIZE)) > 0) {
+        bytesWritten = write(destFd, buffer, bytesRead);
+        if (bytesWritten == -1) {
+            perror("Error writing to destination file");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    // Check for read error
+    if (bytesRead == -1) {
+        perror("Error reading from source file");
+        exit(EXIT_FAILURE);
+    }
+
+    // Close file descriptors
+    if (close(sourceFd) == -1) {
+        perror("Error closing source file");
+        exit(EXIT_FAILURE);
+    }
+
+    if (close(destFd) == -1) {
+        perror("Error closing destination file");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("File copied successfully.\n");
+
+    return 0;
+}
+```
