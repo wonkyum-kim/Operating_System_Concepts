@@ -1,7 +1,7 @@
 # Chapter 2. Operating-System Structure
 
 - [x] Exercises 
-- [ ] Problems 
+- [x] Problems 
 - [ ] Projects 
 
 # Chapter 3. Process
