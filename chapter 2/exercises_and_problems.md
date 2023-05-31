@@ -60,3 +60,11 @@ APIs and ABIs serve different purposes in software development.
 APIs focus on the programming interface and provide a higher-level abstraction for developers to build applications, while ABIs define the low-level binary interface between modules and the system, ensuring interoperability at the binary level. 
 
 APIs offer portability and compatibility, while ABIs are platform-specific and require adherence to specific binary-level conventions.
+
+# 2.19
+
+- Microkernel approach makes extending the operating system easier. All new services are added to user space and consequently do not require modification of the kernel. When the kernel does have to be modified, the changes tend to be fewer, because the microkernel is a smaller kernel.
+
+- Communication is provided through message passing. For example, if the client program wishes to access a file, it must interact with the file server. The client program and service never interact directly. Rather, they communicate indirectly by exchanging messages with the microkernel.
+
+- The performance of microkernels can suffer due to increased system-function overhead. When two user-level services must communicate, messages must be copied between the services, which reside in separate address spaces. In addition, the operating system may have to switch from one process to the next to exchange the messages.
