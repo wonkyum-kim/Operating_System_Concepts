@@ -38,3 +38,17 @@ Designing a system to allow a choice of operating systems during boot requires i
 - Run diagnostics to determine the state of the machine (inspecting memory and the CPU and discovering devices).
 -  Initialize all aspects of the system, from CPU registers to device controllers and the contents of main memory.
 - Start the operating system and mounts the root file system.
+
+# 2.10
+
+1. Register Passing:
+
+In this method, parameters are passed to the operating system through registers. However, it limits the number and size of parameters that can be passed due to the limited number of registers available.
+
+2. Memory Passing:
+
+In some cases, there may be more parameters than registers. In these cases, the parameters are generally stored in a block, or table, in memory, and the address of the block is passed as a parameter in a register.
+
+3. Stack Passing:
+
+Parameters also can be placed, or pushed, onto a stack by the program and popped off the stack by the operating system.
