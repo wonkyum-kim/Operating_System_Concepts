@@ -68,3 +68,7 @@ APIs offer portability and compatibility, while ABIs are platform-specific and r
 - Communication is provided through message passing. For example, if the client program wishes to access a file, it must interact with the file server. The client program and service never interact directly. Rather, they communicate indirectly by exchanging messages with the microkernel.
 
 - The performance of microkernels can suffer due to increased system-function overhead. When two user-level services must communicate, messages must be copied between the services, which reside in separate address spaces. In addition, the operating system may have to switch from one process to the next to exchange the messages.
+
+# 2.20
+
+Using LKM doesn't have to recompile the kernel every time a change was made.
