@@ -28,7 +28,9 @@ See chapter 2.1 Operating-System Serveices.
 
 # 2.7 
 
-It depends on the design and implementation of the operating system.
+For certain devices, such as embedded systems, a disk with a file system may be not be available for the device. 
+
+In this situation, the operating system must be stored in firmware.
 
 # 2.8
 
