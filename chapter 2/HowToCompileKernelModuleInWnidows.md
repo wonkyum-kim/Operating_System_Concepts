@@ -1,4 +1,4 @@
-0. Before starting the WSL2 installation
+## 0. Before starting the WSL2 installation
 
 Your Windows account name must be in English.
 
@@ -10,17 +10,17 @@ https://healthdevelop.tistory.com/entry/etc3 (Korean)
 
 If you have installed WSL2 before, you may need to reinstall it after renaming it.
 
-1. Install WSL2
+## 1. Install WSL2
 
 ```bash
 wsl --install
 ```
 
-2. Donwload Ubuntu
+## 2. Donwload Ubuntu
 
 Go to Microsoft store and then install latest version of Ubuntu.
 
-3. Install required packages
+## 3. Install required packages
 
 ```bash
 sudo apt update
@@ -30,7 +30,7 @@ sudo apt install bc
 sudo apt install dwarves
 ```
 
-4. Download the latest kernel for WSL2
+## 4. Download the latest kernel for WSL2
 
 Go to https://github.com/microsoft/WSL2-Linux-Kernel, and check branches to check the latest kernel.
 
@@ -40,7 +40,7 @@ At this moment, the latest kernel is 6.1.y
 git clone --depth 1 --branch linux-msft-wsl-6.1.y https://github.com/microsoft/WSL2-Linux-Kernel
 ```
 
-5. Kernel compile
+## 5. Kernel compile
 
 Go to WSL2-Linux-Kernel directory.
 
@@ -58,7 +58,7 @@ make KCONFIG_CONFIG=Microsoft/config-wsl -j 12
 
 If the number of cores is small, it will take a very long time.
 
-6. Copy the kernel image file and create .wslconfig
+## 6. Copy the kernel image file and create .wslconfig
 
 Go to PowerShell or Windows Terminal.
 
@@ -83,7 +83,7 @@ sudo vim /mnt/c/Users/wonkyum/.wslconfig
 kernel=C:\\Users\\[yourUserName]\\vmlinux
 ```
 
-7. Shut down WSL and check your kernel.
+## 7. Shut down WSL and check your kernel.
 
 Close Ubuntu and go to PowerShell or Windows Terminal.
 
@@ -98,7 +98,7 @@ uname -r
 // 6.1.21.2-microsoft-standard-WSL2+
 ```
 
-8. Make a directory and compile the kernel module.
+## 8. Make a directory and compile the kernel module.
 
 Make a `simple` directory and copy Makefile, simple.c from this repository to it.
 
