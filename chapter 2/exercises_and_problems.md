@@ -4,9 +4,9 @@ The purpose of system calls is to provide an interface between a running program
 
 # 2.2
 
-The purpose of the command interperter is to interpret and execute commands entered by users and facilitate the interaction between users and the operating system.
+It reads commands from the user or from a file of commands and executes them, usually by turning them into one or more system calls. 
 
-By separating the command interpreter from the kernel, the operating system achieves a modular and flexible design, promotes security and stability, supports multi-user environments, and allows users to customize their command-line experience according to their preferences and needs.
+It is usually not part of the kernel because the command interpreter is subject to changes.
 
 # 2.3
 
