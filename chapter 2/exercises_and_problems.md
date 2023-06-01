@@ -34,7 +34,22 @@ In this situation, the operating system must be stored in firmware.
 
 # 2.8
 
-Designing a system to allow a choice of operating systems during boot requires implementing a mechanism commonly known as a bootstrap.
+Consider a system that would like to run both Windows and three different distributions of Linux.
+
+Each operating system will be stored on disk. 
+
+During system boot, a special program (which we will call the boot manager) will determine which operating system to boot into. 
+
+This means that rather than initially booting to an operating system, the boot manager will first run during system startup. 
+
+It is this boot manager that is responsible for determining which system to boot into. 
+
+Typically, boot managers must be stored at certain locations on the hard disk to be recognized during system startup. 
+
+Boot managers often provide the user with a selection of systems to boot into; boot managers are also typically designed to boot
+into a default operating system if no choice is selected by the user.
+
+After selecting an operating system to boot, the bootstrap program needs to do these things:
 
 - Load the file containing the kernel program into memory.
 - Run diagnostics to determine the state of the machine (inspecting memory and the CPU and discovering devices).
