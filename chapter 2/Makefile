@@ -1,5 +1,5 @@
 obj-m += simple.o
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+	make -C ../WSL2-Linux-Kernel M=`pwd` modules
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	make -C ../WSL2-Linux-Kernel M=`pwd` clean
