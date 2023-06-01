@@ -102,11 +102,12 @@ uname -r
 
 Make a `simple` directory and copy Makefile, simple.c from this repository to it.
 
+```
 |- WSL2-Linux-Kernel
 |- simple
      |- Makefile
      |- simple.c
-     
+```     
      
 Then, follow this.
 
