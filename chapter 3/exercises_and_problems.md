@@ -18,17 +18,7 @@ c. shared memory segments
 
 # 3.8
 
-1. Save the current process state: The kernel saves the state of the currently running process by storing its register values, program counter, and other necessary data in memory. This allows the kernel to later restore the process to its previous state when it is ready to resume execution.
-
-2. Choose a new process to run: The kernel selects a new process to run by selecting it from the list of ready processes. The kernel may use a scheduling algorithm to determine which process to run next, based on factors such as priority, time slice, or resource availability.
-
-3. Load the new process state: The kernel loads the state of the new process by retrieving its register values, program counter, and other necessary data from memory. This restores the new process to the state it was in when it was last running.
-
-4. Update the kernel data structures: The kernel updates its data structures to reflect the change in the running process. For example, it may update the process state, scheduling queues, or other relevant data structures.
-
-5. Update the CPU: The kernel updates the CPU's registers to reflect the new process state. This includes updating the program counter to point to the next instruction in the new process's code.
-
-6. Resume execution: The kernel transfers control to the new process and allows it to resume execution. The new process will continue running until it either completes its work or is preempted by the kernel.
+When a context switch occurs, the kernel saves the context of the old process in its PCB and loads the saved context of the new process scheduled to run. 
 
 # 3.10
 
