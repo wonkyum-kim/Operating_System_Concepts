@@ -117,7 +117,7 @@ make menuconfig
 exit -> enter -> yes
 ```
 
-Finally, you can comple the kernel module.
+Finally, you can compile the kernel module.
 
 ```bash
 make
