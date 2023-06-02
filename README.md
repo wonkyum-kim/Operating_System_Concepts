@@ -2,7 +2,7 @@
 
 - [x] Exercises 
 - [x] Problems 
-- [ ] Projects 
+- [x] Projects 
 
 # Chapter 3. Process
 
