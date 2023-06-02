@@ -6,6 +6,12 @@ The result is 5.
 
 8 processes are created including the initial parent process.
 
+# 3.4
+
+The CPU current-register-set pointer is changed to point to the set containing the new context. 
+
+If the context is in memory, one of the contexts in a register set must be chosen and be moved to memory, and the new context must be loaded from memory into the set.
+
 # 3.5
 
 c. shared memory segments
