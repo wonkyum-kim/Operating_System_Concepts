@@ -8,7 +8,7 @@
 
 - [x] Exercises 
 - [x] Problems 
-- [ ] Projects 
+- [x] Projects 
 
 # Chapter 4. Threads and Concurrency
 
