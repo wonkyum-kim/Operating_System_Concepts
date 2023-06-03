@@ -77,7 +77,7 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
         return 0;
     }
 
-    printk(KERN_INFO "command = [%s] pid = [%d] state = [%d]\n", tsk->comm, tsk->pid, tsk->stats);
+    printk(KERN_INFO "command = [%s] pid = [%d] state = [%d]\n", tsk->comm, tsk->pid, tsk->__state);
 
     completed = 1;
 
