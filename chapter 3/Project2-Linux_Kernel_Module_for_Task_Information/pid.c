@@ -38,7 +38,7 @@ static int proc_init(void)
 
     printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
 
-	return 0;
+    return 0;
 }
 
 /* This function is called when the module is removed. */
@@ -77,7 +77,6 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
         return 0;
     }
 
-    printk(KERN_INFO "pid = [%d]\n", pid);
     printk(KERN_INFO "command = [%s] pid = [%d] state = [%d]\n", tsk->comm, tsk->pid, tsk->stats);
 
     completed = 1;
