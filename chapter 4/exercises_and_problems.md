@@ -92,6 +92,36 @@ CHILD: value = 5
 
 PARENT: value = 0
 
+# 4.21
+
+1. Critical Section
+
+```c
+pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);
+
+/* Critical section where thread cancellation should be disabled */
+pthread_mutex_lock(&mutex);
+/* Perform some important operations */
+pthread_mutex_unlock(&mutex);
+
+pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
+```
+
+2. Resource Cleanup
+
+```c
+pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);
+
+/* Perform some work that requires resource allocation */
+void* data = malloc(sizeof(int) * 1000);
+/* Some other operations */
+
+/* Cleanup and free allocated resources */
+free(data);
+
+pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
+```
+
 # 4.22
 
 ```c
