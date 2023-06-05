@@ -12,7 +12,7 @@ Data processing: When dealing with large amounts of data, such as in data mining
 
 # 4.3
 
-The multithreaded web server described in Section 4.1 exhibit task parallelism.
+The multithreaded web server described in Section 4.1 exhibit data parallelism.
 
 # 4.4
 
