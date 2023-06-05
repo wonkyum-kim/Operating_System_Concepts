@@ -50,6 +50,20 @@ Allocating and managing the memory map is typically the most time-consuming acti
 
 Creating either a user thread or a kernel thread involves allocating a small data structure to hold a register set, stack, and priority.
 
+# 4.7
+
+Yes. Timing is crucial to real-time applications. 
+
+If a thread is marked as real-time but is not bound to an LWP, the thread may have to wait to be attached to an LWP before running. 
+
+Consider a situation in which a real-time thread is running (is attached to an LWP) and then proceeds to block (must perform I/O, has been preempted by a higher-priority real-time thread, is waiting for a mutual exclusion lock, etc.). 
+
+While the real-time thread is blocked, the LWP it was attached to is assigned to another thread. 
+
+When the real-time thread has been scheduled to run again, it must rst wait to be attached to an LWP. 
+
+By binding an LWP to a real-time thread, you are ensuring that the thread will be able to run with minimal delay once it is scheduled.
+
 # 4.10
 
 b. Heap memory
