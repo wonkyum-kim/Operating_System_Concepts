@@ -8,7 +8,7 @@ Data processing: When dealing with large amounts of data, such as in data mining
 
 # 4.2
 
-(a) 1.43 (b) 1.18
+(a) 1.43 (b) 1.82
 
 # 4.3
 
