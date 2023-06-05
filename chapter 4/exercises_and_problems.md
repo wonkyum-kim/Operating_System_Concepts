@@ -16,17 +16,13 @@ The multithreaded web server described in Section 4.1 exhibit data parallelism.
 
 # 4.4
 
-User-level threads and kernel-level threads are two different approaches to implementing threads in an operating system. Here are two differences between them:
+User-level threads are unknown by the kernel, whereas the kernel is aware of kernel threads.
 
-1. System support: User-level threads are managed entirely by the user-level thread library, without direct support from the operating system kernel. On the other hand, kernel-level threads are managed directly by the operating system kernel, which provides support for thread scheduling and synchronization.
+User threads are scheduled by the thread library, and kernel threads are scheduled by the kernel.
 
-2. Context switching: Context switching between user-level threads is faster than context switching between kernel-level threads, as it involves switching only the user-level context of the thread. In contrast, context switching between kernel-level threads involves switching both the user-level and kernel-level contexts, which is a more expensive operation.
+Kernel threads need not be associated with a process, whereas every user thread belongs to a process. 
 
-One type of thread may be better than the other depending on the requirements of the application:
-
-1. User-level threads are lightweight and fast, making them suitable for applications with many threads that do not require high levels of concurrency or need to perform I/O operations. They are also useful when the operating system does not provide support for threads.
-
-2. Kernel-level threads, on the other hand, provide better support for synchronization and scheduling, making them more suitable for applications that require high levels of concurrency and need to perform I/O operations or other system calls that may block the thread. They are also more suitable for applications that require precise control over thread scheduling and priority. However, they are less efficient than user-level threads due to the overhead of context switching between kernel and user space.
+Kernel threads are generally more expensive to maintain than user threads, as they must be represented with a kernel data structure.
 
 # 4.5
 
