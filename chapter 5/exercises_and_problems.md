@@ -22,6 +22,12 @@ Prevention of starvation: Processes in lower-priority queues can be scheduled wi
 
 Improved throughput: Different types of processes have different resource requirements, and different time-quantum sizes can help optimize resource utilization. For example, I/O-bound processes may benefit from longer time quantums in the I/O queue, while CPU-bound processes may benefit from shorter time quantums in the CPU queue. By optimizing time-quantum sizes for each queue, the system can achieve higher throughput.
 
+# 5.8
+
+It will favor the I/O-bound programs because of the relatively short CPU bursts requested by them.
+
+However, the CPU-bound programs will not starve, because the I/O-bound programs will relinquish the CPU relatively often to do their I/O.
+
 # 5.9
 
 The main difference between PCS and SCS scheduling is that in PCS, the process itself determines when it should be scheduled, while in SCS, the operating system is responsible for making scheduling decisions.
