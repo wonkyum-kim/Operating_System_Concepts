@@ -20,7 +20,7 @@
 
 - [x] Exercises 
 - [x] Problems 
-- [ ] Projects
+- [x] Projects
 
 # Chapter 6. Synchroization Tools
 
