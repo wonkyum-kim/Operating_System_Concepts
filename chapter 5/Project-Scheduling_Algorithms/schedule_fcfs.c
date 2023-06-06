@@ -18,15 +18,15 @@ void add(char* name, int priority, int burst)
     task->priority = priority;
     task->burst = burst;
 
-    struct node *newNode = (struct node*)malloc(sizeof(struct node));
-    newNode->task = task;
-    newNode->next = NULL;
+    struct node *new_node = (struct node*)malloc(sizeof(struct node));
+    new_node->task = task;
+    new_node->next = NULL;
 
     if (!head) {
-        head = newNode;
-        tail = newNode;
+        head = new_node;
+        tail = new_node;
     } else {
-        tail->next = newNode;
+        tail->next = new_node;
         tail = tail->next;
     }
 }
