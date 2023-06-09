@@ -77,7 +77,7 @@ cp vmlinux /mnt/c/Users/[yourUserName]
 Create and write .wslconfig
 
 ```bash
-sudo vim /mnt/c/Users/wonkyum/.wslconfig
+sudo vim /mnt/c/Users/[yourUserName]/.wslconfig
 
 [wsl2]
 kernel=C:\\Users\\[yourUserName]\\vmlinux
