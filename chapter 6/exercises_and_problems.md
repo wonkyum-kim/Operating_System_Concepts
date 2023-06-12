@@ -83,3 +83,9 @@ There are no race conditions in the above code example. Each computing core only
 It is not free from race conditions.
 
 omparing the return value of CAS with old_node may occur race conditions.
+
+# 6.11
+
+It works appropriately for implementing spinlocks. 
+
+It ensures that the compare_and_swap() operation is only invoked when the lock appears to be available, thus reducing unnecessary operations and contention.
