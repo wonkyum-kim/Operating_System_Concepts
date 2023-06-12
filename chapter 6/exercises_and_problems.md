@@ -77,3 +77,9 @@ is_empty() {
 # 6.9
 
 There are no race conditions in the above code example. Each computing core only accesses and modifies its own element in the array, and there are no shared variables or resources that can lead to data inconsistency or corruption.
+
+# 6.10
+
+It is not free from race conditions.
+
+omparing the return value of CAS with old_node may occur race conditions.
