@@ -223,3 +223,80 @@ int main()
     return 0;
 }
 ```
+
+## 7.19
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <pthread.h>
+
+typedef struct {
+    int count;              // Count of threads waiting at the barrier
+    int threshold;          // Number of threads required to reach the barrier
+    pthread_mutex_t mutex;  // Mutex for synchronization
+    pthread_cond_t cond;    // Condition variable for signaling
+} Barrier;
+
+Barrier* barrier;
+
+int init(int n, Barrier* barrier)
+{
+    if (n <= 0) {
+        return -1; // Invalid size
+    }
+
+    barrier->count = 0;
+    barrier->threshold = n;
+    pthread_mutex_init(&barrier->mutex, NULL);
+    pthread_cond_init(&barrier->cond, NULL);
+
+    return 0;
+}
+
+int barrier_point(Barrier* barrier)
+{
+    pthread_mutex_lock(&barrier->mutex);
+
+    barrier->count++;
+    printf("%d\n", barrier->count);
+    if (barrier->count < barrier->threshold) {
+        pthread_cond_wait(&barrier->cond, &barrier->mutex);
+    } else {
+        // Last thread reached the barrier, release all threads
+        barrier->count = 0;
+        pthread_cond_broadcast(&barrier->cond);
+    }
+
+    pthread_mutex_unlock(&barrier->mutex);
+
+    return 0;
+}
+
+void *foo(void *param)
+{
+    printf("check\n");
+    barrier_point(barrier);
+    printf("out\n");
+    pthread_exit(NULL);
+}
+
+int main()
+{
+    barrier = (Barrier*)malloc(sizeof(Barrier));
+    init(3, barrier);
+
+    pthread_t threads[3];
+    
+    for (int i = 0; i < 3; ++i) {
+        pthread_create(&threads[i], NULL, foo, NULL);
+    }
+    
+    for (int i = 0; i < 3; ++i) {
+        pthread_join(threads[i], NULL);
+    }
+
+    free(barrier);
+}
+```
