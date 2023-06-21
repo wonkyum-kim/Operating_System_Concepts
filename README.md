@@ -30,5 +30,5 @@
 # Chapter 7. Synchronization Examples
 
 - [x] Exercises 
-- [ ] Problems 
+- [x] Problems 
 - [ ] Projects
